@@ -17,6 +17,8 @@ git clone https://github.com/CodeOne45/food-guessr
 Once the clone is finished you must npm install the both of them
 ```
 npx install -g create-react-app
+npm install
+npm start
 ```
 
 ## Source Structure
