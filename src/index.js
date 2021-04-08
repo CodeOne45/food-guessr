@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import World from './World';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
+  // <React.StrictMode>
+  //   <App />
+  // </React.StrictMode>,
+  // document.getElementById('root'),
+  <World />,
+  document.getElementById('globeViz')
 );
 
 // If you want to start measuring performance in your app, pass a function
