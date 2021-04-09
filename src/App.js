@@ -1,8 +1,7 @@
-import { Component } from "react";
-import React from "react";
+import React, { Component } from 'react';
 
-import "./App.css";
-import World from "./World";
+import './App.css';
+import World from './World';
 
 class Header extends Component {
   render() {
@@ -13,6 +12,7 @@ class Header extends Component {
           className="App-link"
           href="https://github.com/CodeOne45/food-guessr/blob/develop/README.md"
           target="_blank"
+          rel="noreferrer"
         >
           Learn more
         </a>
@@ -37,11 +37,11 @@ class App extends Component {
   hideComponent(name) {
     console.log(name);
     switch (name) {
-      case "showHideHome":
+      case 'showHideHome':
         this.setState({ showHideHome: this.state.Header });
         break;
-      case "showHideWorld":
-        this.hideComponent("showHideHome");
+      case 'showHideWorld':
+        this.hideComponent('showHideHome');
         this.setState({ showHideWorld: !this.state.World });
         break;
       default:
@@ -54,7 +54,7 @@ class App extends Component {
     return (
       <div>
         <div className="App">
-          <button onClick={() => this.hideComponent("showHideWorld")}>
+          <button onClick={() => this.hideComponent('showHideWorld')}>
             Start
           </button>
           {showHideHome && <Header />}
