@@ -1,28 +1,14 @@
-import React, { Component } from 'react';
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable no-undef */
+import React from 'react';
+import World from './components/World/World';
+import Header from './components/Header/Header';
 
-import './App.css';
-import World from './World';
-
-class Header extends Component {
-  render() {
-    return (
-      <header className="App-header">
-        <p>Food-Guessr</p>
-        <a
-          className="App-link"
-          href="https://github.com/CodeOne45/food-guessr/blob/develop/README.md"
-          target="_blank"
-          rel="noreferrer"
-        >
-          Learn more
-        </a>
-        <button>Play</button>
-      </header>
-    );
-  }
-}
-
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
 
@@ -35,7 +21,6 @@ class App extends Component {
   }
 
   hideComponent(name) {
-    console.log(name);
     switch (name) {
       case 'showHideHome':
         this.setState({ showHideHome: this.state.Header });
@@ -47,6 +32,7 @@ class App extends Component {
       default:
         return null;
     }
+    return null;
   }
 
   render() {

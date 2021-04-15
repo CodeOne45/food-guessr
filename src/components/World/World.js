@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import Globe from 'react-globe.gl';
 import * as d3 from 'd3';
@@ -11,10 +12,7 @@ const World = () => {
   useEffect(() => {
     // load data // src: http://geojson.xyz/
     fetch('./ne_110m_admin_0_countries.geojson')
-      .then(res => {
-        console.log('----', res);
-        return res.json();
-      })
+      .then(res => res.json())
       .then(setCountries);
   }, []);
 
@@ -24,7 +22,6 @@ const World = () => {
   const getVal = feat =>
     feat.properties.GDP_MD_EST / Math.max(1e5, feat.properties.POP_EST);
 
-  console.log('+++', countries);
   const maxVal = useMemo(() => Math.max(...countries.features.map(getVal)), [
     countries,
   ]);
