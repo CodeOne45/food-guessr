@@ -1,28 +1,14 @@
-import { Component } from "react";
-import React from "react";
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/button-has-type */
+/* eslint-disable react/jsx-filename-extension */
+/* eslint-disable react/react-in-jsx-scope */
+/* eslint-disable no-undef */
+import React from 'react';
+import World from './components/World/World';
+import Header from './components/Header/Header';
 
-import "./App.css";
-import World from "./World";
-
-class Header extends Component {
-  render() {
-    return (
-      <header className="App-header">
-        <p>Food-Guessr</p>
-        <a
-          className="App-link"
-          href="https://github.com/CodeOne45/food-guessr/blob/develop/README.md"
-          target="_blank"
-        >
-          Learn more
-        </a>
-        <button>Play</button>
-      </header>
-    );
-  }
-}
-
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
 
@@ -35,18 +21,18 @@ class App extends Component {
   }
 
   hideComponent(name) {
-    console.log(name);
     switch (name) {
-      case "showHideHome":
+      case 'showHideHome':
         this.setState({ showHideHome: this.state.Header });
         break;
-      case "showHideWorld":
-        this.hideComponent("showHideHome");
+      case 'showHideWorld':
+        this.hideComponent('showHideHome');
         this.setState({ showHideWorld: !this.state.World });
         break;
       default:
         return null;
     }
+    return null;
   }
 
   render() {
@@ -54,7 +40,7 @@ class App extends Component {
     return (
       <div>
         <div className="App">
-          <button onClick={() => this.hideComponent("showHideWorld")}>
+          <button onClick={() => this.hideComponent('showHideWorld')}>
             Start
           </button>
           {showHideHome && <Header />}
