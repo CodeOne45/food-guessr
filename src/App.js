@@ -5,50 +5,26 @@
 /* eslint-disable react/react-in-jsx-scope */
 /* eslint-disable no-undef */
 import React from 'react';
-import World from './components/World/World';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header/Header';
+import World from './components/World/World';
+import PageNotFound from './components/error404/PageNotFound';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.inputRef = React.createRef();
-    this.state = {
-      showHideHome: true,
-      showHideWorld: false,
-    };
-    this.hideComponent = this.hideComponent.bind(this);
-  }
-
-  hideComponent(name) {
-    switch (name) {
-      case 'showHideHome':
-        this.setState({ showHideHome: this.state.Header });
-        break;
-      case 'showHideWorld':
-        this.hideComponent('showHideHome');
-        this.setState({ showHideWorld: !this.state.World });
-        break;
-      default:
-        return null;
-    }
-    return null;
-  }
-
-  render() {
-    const { showHideHome, showHideWorld } = this.state;
-    return (
-      <div>
-        <div className="App">
-          <button onClick={() => this.hideComponent('showHideWorld')}>
-            Start
-          </button>
-          {showHideHome && <Header />}
-          <body>{showHideWorld && <World />}</body>
-        </div>
+function App() {
+  return (
+    <div>
+      <div className="App">
+        <Router>
+          <Switch>
+            <Route path="/" exact component={Header} />
+            <Route path="/foodGuess" exact component={World} />
+            <Route component={PageNotFound} />
+          </Switch>
+        </Router>
       </div>
-    );
-  }
+    </div>
+  );
 }
+// <Header />
 
 export default App;
