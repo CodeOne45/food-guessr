@@ -3,7 +3,7 @@
 /* eslint-disable import/prefer-default-export */
 
 import React, { useState } from 'react';
-import World from '../World/World';
+import World from 'Components/World/World';
 
 function Header() {
   // Button parameters & functions

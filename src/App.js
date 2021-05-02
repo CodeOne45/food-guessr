@@ -6,9 +6,9 @@
 /* eslint-disable no-undef */
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from './components/Header/Header';
-import World from './components/World/World';
-import PageNotFound from './components/error404/PageNotFound';
+import Header from 'Components/Header/Header';
+import World from 'Components/World/World';
+import PageNotFound from 'Components/Error404/PageNotFound';
 
 function App() {
   return (
