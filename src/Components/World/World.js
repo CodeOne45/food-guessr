@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import Globe from 'react-globe.gl';
 import * as d3 from 'd3';
