@@ -4,10 +4,9 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import hamburger from 'Assets/img/hamburger.svg';
 
 const navigation = [
-  { name: 'Product', href: '#' },
-  { name: 'Features', href: '#' },
-  { name: 'Marketplace', href: '#' },
-  { name: 'Company', href: '#' },
+  { name: 'Accueil', href: '#' },
+  { name: 'À propos', href: '#' },
+  { name: "L'équipe", href: '#' },
 ];
 
 export default function Hero() {
@@ -60,9 +59,9 @@ export default function Hero() {
                   ))}
                   <a
                     href="/#"
-                    className="font-medium text-yellow-600 hover:text-yellow-500"
+                    className="font-medium bg-yellow-600 hover:bg-yellow-700 px-7 py-3 rounded text-white"
                   >
-                    Log in
+                    Jouer
                   </a>
                 </div>
               </nav>
@@ -112,9 +111,9 @@ export default function Hero() {
                   </div>
                   <a
                     href="/#"
-                    className="block w-full px-5 py-3 text-center font-medium text-yellow-600 bg-gray-50 hover:bg-gray-100"
+                    className="block w-full mx-4 my-4 py-3 text-center font-medium text-white rounded bg-yellow-600 hover:bg-yellow-700"
                   >
-                    Log in
+                    Jouer
                   </a>
                 </div>
               </Popover.Panel>

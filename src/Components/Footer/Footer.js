@@ -3,12 +3,9 @@ import React from 'react';
 
 const navigation = {
   main: [
-    { name: 'About', href: '#' },
-    { name: 'Blog', href: '#' },
-    { name: 'Jobs', href: '#' },
-    { name: 'Press', href: '#' },
-    { name: 'Accessibility', href: '#' },
-    { name: 'Partners', href: '#' },
+    { name: 'Accueil', href: '#' },
+    { name: 'A propos', href: '#' },
+    { name: "L'équipe", href: '#' },
   ],
   social: [
     {
@@ -77,7 +74,7 @@ const navigation = {
 
 export default function Example() {
   return (
-    <footer className="bg-yellow-600">
+    <footer className="bg-yellow-700">
       <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
         <nav
           className="-mx-5 -my-2 flex flex-wrap justify-center"
@@ -107,7 +104,7 @@ export default function Example() {
           ))}
         </div>
         <p className="mt-8 text-center text-base text-white">
-          &copy; 2020 Workflow, Inc. All rights reserved.
+          &copy; 2021 PJS4 DUT Apprentissage
         </p>
       </div>
     </footer>
