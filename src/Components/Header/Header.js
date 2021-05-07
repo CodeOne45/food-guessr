@@ -1,6 +1,3 @@
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable import/prefer-default-export */
-
 import React, { useState } from 'react';
 import World from 'Components/World/World';
 
