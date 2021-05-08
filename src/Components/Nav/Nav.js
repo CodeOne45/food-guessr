@@ -5,8 +5,8 @@ import hamburger from 'Assets/img/hamburger.svg';
 
 const navigation = [
   { name: 'Accueil', href: '#' },
-  { name: 'À propos', href: '#' },
-  { name: "L'équipe", href: '#' },
+  { name: 'À propos', href: '#about' },
+  { name: "L'équipe", href: '#team' },
 ];
 
 export default function Hero() {
@@ -58,7 +58,7 @@ export default function Hero() {
                     </a>
                   ))}
                   <a
-                    href="/#"
+                    href="#cta"
                     className="font-medium bg-yellow-600 hover:bg-yellow-700 px-7 py-3 rounded text-white"
                   >
                     Jouer

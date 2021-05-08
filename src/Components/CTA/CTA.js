@@ -2,7 +2,7 @@ import React from 'react';
 
 export default function CTA() {
   return (
-    <div className="relative py-16 bg-white">
+    <div id="cta" className="relative py-16 bg-white">
       <div
         className="hidden absolute top-0 inset-x-0 h-1/2 bg-gray-50 lg:block"
         aria-hidden="true"
@@ -110,7 +110,7 @@ export default function CTA() {
                 sed lacus, fames.
               </p>
               <a
-                className="block w-full py-3 px-5 text-center bg-white border border-transparent rounded-md shadow-md text-base font-medium text-yellow-700 hover:bg-gray-50 sm:inline-block sm:w-auto"
+                className="block w-full py-3 px-5 text-center bg-white border border-transparent rounded-md shadow-md text-base font-medium text-yellow-700 hover:bg-yellow-200 sm:inline-block sm:w-auto"
                 href="/#"
               >
                 Explore open positions

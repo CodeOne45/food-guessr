@@ -3,9 +3,9 @@ import React from 'react';
 
 const navigation = {
   main: [
-    { name: 'Accueil', href: '#' },
-    { name: 'A propos', href: '#' },
-    { name: "L'équipe", href: '#' },
+    { name: 'Accueil', href: '/#' },
+    { name: 'A propos', href: '#about' },
+    { name: "L'équipe", href: '#team' },
   ],
   social: [
     {
@@ -72,7 +72,7 @@ const navigation = {
   ],
 };
 
-export default function Example() {
+export default function Footer() {
   return (
     <footer className="bg-yellow-700">
       <div className="max-w-7xl mx-auto py-12 px-4 overflow-hidden sm:px-6 lg:px-8">
@@ -84,7 +84,7 @@ export default function Example() {
             <div key={item.name} className="px-5 py-2">
               <a
                 href={item.href}
-                className="text-base text-white hover:text-gray-500"
+                className="text-base text-white hover:text-yellow-200"
               >
                 {item.name}
               </a>
@@ -96,7 +96,7 @@ export default function Example() {
             <a
               key={item.name}
               href={item.href}
-              className="text-white hover:text-gray-400"
+              className="text-white hover:text-yellow-200"
             >
               <span className="sr-only">{item.name}</span>
               <item.icon className="h-6 w-6" aria-hidden="true" />
