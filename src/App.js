@@ -3,7 +3,7 @@ import React from 'react';
 // import Header from 'Components/Header/Header';
 // import World from 'Components/World/World';
 // import PageNotFound from 'Components/Error404/PageNotFound';
-import Content from 'Components/Content/Content';
+import About from 'Components/About/About';
 import CTA from 'Components/CTA/CTA';
 import Footer from 'Components/Footer/Footer';
 import Hero from 'Components/Hero/Hero';
@@ -15,7 +15,7 @@ function App() {
     <div>
       <div className="App">
         <Hero />
-        <Content />
+        <About />
         <LogoClouds />
         <CTA />
         <Team />
