@@ -1,4 +1,5 @@
 import React from 'react';
+import globe from 'Assets/img/globe.jpg';
 
 export default function CTA() {
   return (
@@ -18,7 +19,7 @@ export default function CTA() {
               <div className="hidden lg:block aspect-w-10 aspect-h-6 sm:aspect-w-2 sm:aspect-h-1 lg:aspect-w-1">
                 <img
                   className=" object-cover object-center rounded-3xl shadow-2xl"
-                  src="https://images.unsplash.com/photo-1512152272829-e3139592d56f?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+                  src={globe}
                   alt=""
                 />
               </div>
