@@ -4,7 +4,7 @@ import React from 'react';
 const navigation = {
   main: [
     { name: 'Accueil', href: '/#' },
-    { name: 'A propos', href: '#about' },
+    { name: 'À propos', href: '#about' },
     { name: "L'équipe", href: '#team' },
   ],
   social: [
