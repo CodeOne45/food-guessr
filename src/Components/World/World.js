@@ -4,7 +4,7 @@ import * as d3 from 'd3';
 
 const { useState, useEffect, useMemo } = React;
 
-const World = () => {
+export default function World() {
   const [countries, setCountries] = useState({ features: [] });
   const [hoverD, setHoverD] = useState();
 
@@ -50,5 +50,4 @@ const World = () => {
       polygonsTransitionDuration={300}
     />
   );
-};
-export default World;
+}

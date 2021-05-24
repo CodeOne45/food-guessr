@@ -30,24 +30,26 @@ export default function PageNotFound() {
   }, []);
 
   return (
-    <Globe
-      globeImageUrl="./404-page-erreur.jpg"
-      // backgroundImageUrl="./404-page-erreur.jpg"
-      showGraticules
-      labelsData={landingSites}
-      labelText="label"
-      labelSize={1.7}
-      labelDotRadius={0.4}
-      labelDotOrientation={d =>
-        labelsTopOrientation.has(d.label) ? 'top' : 'bottom'
-      }
-      labelColor={d => colorScale(d.agency)}
-      labelLabel={d => `
+    <div id="error404">
+      <Globe
+        globeImageUrl="./404-error.jpg"
+        backgroundImageUrl="./bg_moon.png"
+        showGraticules
+        labelsData={landingSites}
+        labelText="label"
+        labelSize={1.7}
+        labelDotRadius={0.4}
+        labelDotOrientation={d =>
+          labelsTopOrientation.has(d.label) ? 'top' : 'bottom'
+        }
+        labelColor={d => colorScale(d.agency)}
+        labelLabel={d => `
         <div><b>${d.label}</b></div>
         <div>${d.agency} - ${d.program} Program</div>
         <div>Landing on <i>${new Date(d.date).toLocaleDateString()}</i></div>
       `}
-      onLabelClick={d => window.open(d.url, '_blank')}
-    />
+        onLabelClick={d => window.open(d.url, '_blank')}
+      />
+    </div>
   );
 }
