@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+#countryName {
+  background-color: whitesmoke;
+  display: flex;
+  top: 30px;
+  right: 30px;
+  padding: 3px;
+  max-width: 100px;
+  width: auto;
+}
