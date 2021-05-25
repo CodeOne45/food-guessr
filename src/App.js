@@ -1,26 +1,33 @@
-/* eslint-disable react/no-access-state-in-setstate */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/button-has-type */
-/* eslint-disable react/jsx-filename-extension */
-/* eslint-disable react/react-in-jsx-scope */
-/* eslint-disable no-undef */
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Header from './components/Header/Header';
-import World from './components/World/World';
-import PageNotFound from './components/error404/PageNotFound';
+// import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+// import Header from 'Components/Header/Header';
+// import World from 'Components/World/World';
+// import PageNotFound from 'Components/Error404/PageNotFound';
+import About from 'Components/About/About';
+import CTA from 'Components/CTA/CTA';
+import Footer from 'Components/Footer/Footer';
+import Hero from 'Components/Hero/Hero';
+import LogoClouds from 'Components/LogoClouds/LogoClouds';
+import Team from 'Components/Team/Team';
 
 function App() {
   return (
     <div>
       <div className="App">
-        <Router>
+        <Hero />
+        <About />
+        <LogoClouds />
+        <CTA />
+        <Team />
+        <Footer />
+
+        {/* <Router>
           <Switch>
             <Route path="/" exact component={Header} />
             <Route path="/foodGuess" exact component={World} />
             <Route component={PageNotFound} />
           </Switch>
-        </Router>
+        </Router> */}
       </div>
     </div>
   );
