@@ -14,6 +14,7 @@ export default function World() {
       .then(setCountries);
   }, []);
 
+  // responsive design for the globe
   useLayoutEffect(() => {
     function updateSize() {
       setSize([window.innerWidth, window.innerHeight]);

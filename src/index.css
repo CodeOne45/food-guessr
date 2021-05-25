@@ -1,9 +1,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-#quizModal {
-  background-color: whitesmoke;
-  padding: 5px;
-  width: fit-content;
-}
