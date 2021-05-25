@@ -1,4 +1,5 @@
 import React from 'react';
+import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import PageNotFound from 'Components/Error404/PageNotFound';
 import Landing from 'Pages/Landing';
