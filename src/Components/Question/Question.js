@@ -10,9 +10,11 @@ export default function Question() {
       .then(
         data => {
           setMeal(data.meals[0]);
+          // eslint-disable-next-line
           console.log(data.meals[0]);
         },
         error => {
+          // eslint-disable-next-line
           console.log(error);
         }
       );
