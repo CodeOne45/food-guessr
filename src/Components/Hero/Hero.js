@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'Components/UI/Link/Link';
 import Nav from 'Components/Nav/Nav';
 
 export default function Hero() {
@@ -20,20 +21,10 @@ export default function Hero() {
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
-                  <a
-                    href="/#"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-600 hover:bg-white hover:border-yellow-600 hover:text-yellow-600 md:py-4 md:text-lg md:px-10"
-                  >
-                    Get started
-                  </a>
+                  <Link content="Get Started" href="/#" type="dark" />
                 </div>
                 <div className="mt-3 sm:mt-0 sm:ml-3">
-                  <a
-                    href="/#"
-                    className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-yellow-700 bg-yellow-100 hover:bg-yellow-200 md:py-4 md:text-lg md:px-10"
-                  >
-                    Live demo
-                  </a>
+                  <Link content="Live Demo" href="/#" type="light" />
                 </div>
               </div>
             </div>

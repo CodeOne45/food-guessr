@@ -26,24 +26,6 @@ export default function LogoClouds() {
               egestas tempus tellus etiam sed. Quam a scelerisque amet
               ullamcorper eu enim et fermentum, augue.
             </p>
-            <div className="mt-8 sm:flex">
-              <div className="rounded-md shadow">
-                <a
-                  href="/#"
-                  className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700"
-                >
-                  Create Account
-                </a>
-              </div>
-              <div className="mt-3 sm:mt-0 sm:ml-3">
-                <a
-                  href="/#"
-                  className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-yellow-700 bg-yellow-100 hover:bg-yellow-200"
-                >
-                  Contact Us
-                </a>
-              </div>
-            </div>
           </div>
           <div className="mt-8 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
             {logos.map(logo => (
