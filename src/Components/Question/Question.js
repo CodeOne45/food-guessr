@@ -18,7 +18,7 @@ export default function Question() {
       );
   };
   return (
-    <div id="mealQuest">
+    <div id="meal-question">
       <button type="button" onClick={play}>
         J&#39;ai Faim !
       </button>

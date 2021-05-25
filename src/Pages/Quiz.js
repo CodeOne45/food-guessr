@@ -4,11 +4,11 @@ import React from 'react';
 
 export default function Quiz() {
   return (
-    <div id="Quiz">
-      <div id="quizModal">
+    <div id="quiz">
+      <div id="quiz-modal">
         <Question />
-        <p id="playerAnswer" />
-        <p id="goodAnswer" />
+        <p id="player-answer" />
+        <p id="good-answer" />
       </div>
       <World />
     </div>
