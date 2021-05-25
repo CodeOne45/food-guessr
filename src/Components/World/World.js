@@ -38,7 +38,7 @@ export default function World() {
   const [newWidth, newHeight] = size;
 
   return (
-    <div id="world3D">
+    <div id="world-3d">
       <Globe
         width={newWidth}
         height={newHeight}
@@ -60,7 +60,7 @@ export default function World() {
         onPolygonHover={setHoverD}
         polygonsTransitionDuration={300}
         onPolygonClick={d => {
-          const answer = document.getElementById('playerAnswer');
+          const answer = document.getElementById('player-answer');
           answer.innerHTML = `Pays choisi : ${d.properties.ADMIN}`;
         }}
       />

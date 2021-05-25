@@ -1,5 +1,5 @@
 const foodGuessrURL = {
-  quiz: '/foodGuessr',
+  quiz: '/food-guessr',
 };
 
 export default foodGuessrURL;

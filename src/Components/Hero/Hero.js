@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'Components/UI/Link/Link';
 import Nav from 'Components/Nav/Nav';
 import foodGuessrURL from 'foodGuessrURL';
 import globe from 'Assets/img/globe.png';
@@ -22,6 +23,7 @@ export default function Hero() {
               </p>
               <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
                 <div className="rounded-md shadow">
+
                   <a
                     href={foodGuessrURL.quiz}
                     className="font-medium bg-yellow-600 hover:bg-yellow-700 px-7 py-3 rounded text-white"

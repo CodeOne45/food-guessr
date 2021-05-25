@@ -1,5 +1,6 @@
 import React from 'react';
 import globe from 'Assets/img/globe.jpg';
+import Link from 'Components/UI/Link/Link';
 
 export default function CTA() {
   return (

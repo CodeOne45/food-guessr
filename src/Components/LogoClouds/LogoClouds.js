@@ -3,6 +3,14 @@ import cssLogo from 'Assets/img/css.svg';
 import htmlLogo from 'Assets/img/html.svg';
 import reactLogo from 'Assets/img/react.svg';
 import tailwindLogo from 'Assets/img/tailwind.svg';
+import Logo from 'Components/UI/Logo/Logo';
+
+const logos = [
+  { src: reactLogo, alt: 'React' },
+  { src: htmlLogo, alt: 'HTML' },
+  { src: cssLogo, alt: 'CSS' },
+  { src: tailwindLogo, alt: 'TailwindCSS' },
+];
 
 export default function LogoClouds() {
   return (
@@ -18,6 +26,7 @@ export default function LogoClouds() {
               egestas tempus tellus etiam sed. Quam a scelerisque amet
               ullamcorper eu enim et fermentum, augue.
             </p>
+
             <div className="mt-8 sm:flex">
               <div className="rounded-md shadow">
                 <a
@@ -51,18 +60,9 @@ export default function LogoClouds() {
             </div>
           </div>
           <div className="mt-8 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
-            <div className="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
-              <img className="max-h-12" src={reactLogo} alt="React" />
-            </div>
-            <div className="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
-              <img className="max-h-12" src={htmlLogo} alt="Html" />
-            </div>
-            <div className="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
-              <img className="max-h-12" src={cssLogo} alt="Css" />
-            </div>
-            <div className="col-span-1 flex justify-center py-8 px-8 bg-gray-50">
-              <img className="max-h-12" src={tailwindLogo} alt="TailwinCSS" />
-            </div>
+            {logos.map(logo => (
+              <Logo src={logo.src} alt={logo.alt} />
+            ))}
           </div>
         </div>
       </div>
