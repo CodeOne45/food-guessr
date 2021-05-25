@@ -1,8 +1,6 @@
-import React from 'react';
+import React, { useLayoutEffect, useState, useEffect, useMemo } from 'react';
 import Globe from 'react-globe.gl';
 import * as d3 from 'd3';
-
-const { useLayoutEffect, useState, useEffect, useMemo } = React;
 
 export default function World() {
   const [countries, setCountries] = useState({ features: [] });
@@ -40,7 +38,7 @@ export default function World() {
   const [newWidth, newHeight] = size;
 
   return (
-    <div>
+    <div id="world3D">
       <Globe
         width={newWidth}
         height={newHeight}
@@ -61,6 +59,10 @@ export default function World() {
         }
         onPolygonHover={setHoverD}
         polygonsTransitionDuration={300}
+        onPolygonClick={d => {
+          const answer = document.getElementById('playerAnswer');
+          answer.innerHTML = `Pays choisi : ${d.properties.ADMIN}`;
+        }}
       />
     </div>
   );

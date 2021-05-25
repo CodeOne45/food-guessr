@@ -2,12 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-#countryName {
+#quizModal {
   background-color: whitesmoke;
-  display: flex;
-  top: 30px;
-  right: 30px;
-  padding: 3px;
-  max-width: 100px;
-  width: auto;
+  padding: 5px;
+  width: fit-content;
 }
