@@ -2,6 +2,7 @@ import React, { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import hamburger from 'Assets/img/hamburger.svg';
+import foodGuessrURL from 'foodGuessrURL';
 
 const navigation = [
   { name: 'Accueil', href: '#' },
@@ -9,7 +10,7 @@ const navigation = [
   { name: "L'équipe", href: '#team' },
 ];
 
-export default function Hero() {
+export default function Nav() {
   return (
     <div>
       <svg
@@ -58,7 +59,7 @@ export default function Hero() {
                     </a>
                   ))}
                   <a
-                    href="#cta"
+                    href={foodGuessrURL.quiz}
                     className="font-medium bg-yellow-600 hover:bg-yellow-700 px-7 py-3 rounded text-white"
                   >
                     Jouer
@@ -110,7 +111,7 @@ export default function Hero() {
                     ))}
                   </div>
                   <a
-                    href="/#"
+                    href={foodGuessrURL.quiz}
                     className="block w-full mx-4 my-4 py-3 text-center font-medium text-white rounded bg-yellow-600 hover:bg-yellow-700"
                   >
                     Jouer
