@@ -4,7 +4,6 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import NavLink from 'Components/UI/NavLink/NavLink';
 import hamburger from 'Assets/img/hamburger.svg';
 
-
 const navigation = [
   { name: 'Accueil', href: '#' },
   { name: 'À propos', href: '#about' },
