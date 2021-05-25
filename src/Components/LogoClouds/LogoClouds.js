@@ -11,7 +11,7 @@ export default function LogoClouds() {
         <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
           <div>
             <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
-              Used by the world’s most average companies
+              Fabriqué avec les dernières technologies web
             </h2>
             <p className="mt-3 max-w-3xl text-lg text-gray-500">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et,
@@ -21,18 +21,31 @@ export default function LogoClouds() {
             <div className="mt-8 sm:flex">
               <div className="rounded-md shadow">
                 <a
-                  href="/#"
+                  target="_blank"
+                  href="https://fr.reactjs.org/"
                   className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700"
+                  rel="noreferrer"
                 >
-                  Create Account
+                  React
                 </a>
               </div>
               <div className="mt-3 sm:mt-0 sm:ml-3">
                 <a
-                  href="/#"
+                  target="_blank"
+                  href="https://nodejs.org/en/"
                   className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-yellow-700 bg-yellow-100 hover:bg-yellow-200"
+                  rel="noreferrer"
                 >
-                  Contact Us
+                  Node JS
+                </a>
+              </div>
+              <div className="rounded-md shadow mt-3 sm:mt-0 sm:ml-3">
+                <a
+                  target="_blank"
+                  href="/#"
+                  className="flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-yellow-600 hover:bg-yellow-700"
+                >
+                  Tailwind
                 </a>
               </div>
             </div>

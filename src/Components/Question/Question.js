@@ -17,6 +17,7 @@ export default function Question() {
         }
       );
   };
+
   return (
     <div id="mealQuest">
       <button type="button" onClick={play}>

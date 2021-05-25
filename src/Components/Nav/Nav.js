@@ -2,7 +2,6 @@ import React, { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import hamburger from 'Assets/img/hamburger.svg';
-import foodGuessrURL from 'foodGuessrURL';
 
 const navigation = [
   { name: 'Accueil', href: '#' },
@@ -58,12 +57,6 @@ export default function Nav() {
                       {item.name}
                     </a>
                   ))}
-                  <a
-                    href={foodGuessrURL.quiz}
-                    className="font-medium bg-yellow-600 hover:bg-yellow-700 px-7 py-3 rounded text-white"
-                  >
-                    Jouer
-                  </a>
                 </div>
               </nav>
             </div>
@@ -110,12 +103,6 @@ export default function Nav() {
                       </a>
                     ))}
                   </div>
-                  <a
-                    href={foodGuessrURL.quiz}
-                    className="block w-full mx-4 my-4 py-3 text-center font-medium text-white rounded bg-yellow-600 hover:bg-yellow-700"
-                  >
-                    Jouer
-                  </a>
                 </div>
               </Popover.Panel>
             </Transition>

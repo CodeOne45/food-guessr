@@ -41,12 +41,10 @@ export default function Team() {
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-8">
           <div className="space-y-5 sm:space-y-4">
             <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
-              Meet our leadership
+              Our team
             </h2>
             <p className="text-xl text-gray-500">
-              Libero fames augue nisl porttitor nisi, quis. Id ac elit odio
-              vitae elementum enim vitae ullamcorper suspendisse. Vivamus
-              fringilla.
+              DUT APP - Projet PJS4 - 2020/2021
             </p>
           </div>
           <div className="lg:col-span-2">

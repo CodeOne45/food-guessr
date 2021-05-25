@@ -103,7 +103,7 @@ export default function CTA() {
                 className="text-3xl font-extrabold text-white"
                 id="join-heading"
               >
-                Join our team
+                Why Food-Guessr ?
               </h2>
               <p className="text-lg text-white">
                 Varius facilisi mauris sed sit. Non sed et duis dui leo,
@@ -114,7 +114,7 @@ export default function CTA() {
                 className="block w-full py-3 px-5 text-center bg-white border border-transparent rounded-md shadow-md text-base font-medium text-yellow-700 hover:bg-yellow-200 sm:inline-block sm:w-auto"
                 href="/#"
               >
-                Explore open positions
+                UN TOUR DU MONDE DES SPÉCIALITÉS CULINAIRES
               </a>
             </div>
           </div>

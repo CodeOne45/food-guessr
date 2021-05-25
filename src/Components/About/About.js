@@ -110,10 +110,10 @@ export default function About() {
         <div className="text-lg max-w-prose mx-auto">
           <h1>
             <span className="block text-base text-center text-yellow-600 font-semibold tracking-wide uppercase">
-              Introducing
+              Introduction
             </span>
             <span className="mt-2 block text-3xl text-center leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-              JavaScript for Beginners
+              Explorez le monde de la nourriture!
             </span>
           </h1>
           <p className="mt-8 text-xl text-gray-500 leading-8">
