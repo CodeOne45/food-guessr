@@ -42,7 +42,7 @@ export default function Nav() {
                       />
                     </a>
                     <div className="-mr-2 flex items-center md:hidden">
-                      <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
+                      <Popover.Button className="bg-yellow-100 rounded-md p-2 inline-flex items-center justify-center text-yellow-600 hover:bg-yellow-600 hover:text-white focus:outline-none">
                         <span className="sr-only">Open main menu</span>
                         <MenuIcon className="h-6 w-6" aria-hidden="true" />
                       </Popover.Button>
@@ -59,7 +59,7 @@ export default function Nav() {
                   ))}
                   <a
                     href={foodGuessrURL.quiz}
-                    className="font-medium bg-yellow-600 hover:bg-yellow-700 px-7 py-3 rounded text-white"
+                    className="font-medium bg-yellow-600 text-white bg-yellow-600 hover:bg-white hover:border-yellow-600 hover:text-yellow-600 border border-transparent text-white bg-yellow-600 hover:bg-white hover:border-yellow-600 hover:text-yellow-600 px-7 py-3 rounded-md text-white"
                   >
                     Jouer
                   </a>
@@ -82,17 +82,18 @@ export default function Nav() {
                 static
                 className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
               >
-                <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
+                <div className="rounded-lg shadow-md bg-yellow-50 ring-1 ring-black ring-opacity-5 overflow-hidden">
                   <div className="px-5 pt-4 flex items-center justify-between">
+                    <div className="h-6 w-6" />
                     <div>
                       <img
                         className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/workflow-mark-yellow-600.svg"
-                        alt=""
+                        src={hamburger}
+                        alt="Hamburger"
                       />
                     </div>
                     <div className="-mr-2">
-                      <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500">
+                      <Popover.Button className="hover:bg-yellow-600 hover:text-white rounded-md p-2 inline-flex items-center justify-center text-gray-700 focus:outline-none">
                         <span className="sr-only">Close main menu</span>
                         <XIcon className="h-6 w-6" aria-hidden="true" />
                       </Popover.Button>
@@ -109,7 +110,7 @@ export default function Nav() {
                   </div>
                   <a
                     href={foodGuessrURL.quiz}
-                    className="block w-full mx-4 my-4 py-3 text-center font-medium text-white rounded bg-yellow-600 hover:bg-yellow-700"
+                    className="block w-full mx-4 my-4 py-3 text-center font-medium text-white rounded bg-yellow-600 text-white bg-yellow-600"
                   >
                     Jouer
                   </a>
