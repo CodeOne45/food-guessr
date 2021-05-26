@@ -62,8 +62,8 @@ export default function World({ parentCallback }) {
         onPolygonHover={setHoverD}
         polygonsTransitionDuration={300}
         onPolygonClick={d => {
-          const answer = document.getElementById('player-answer');
-          answer.innerHTML = `Pays choisi : ${d.properties.ADMIN}`;
+          // const answer = document.getElementById('player-answer');
+          // answer.innerHTML = `Pays choisi : ${d.properties.ADMIN}`;
           parentCallback(d.properties.ADMIN);
         }}
       />
