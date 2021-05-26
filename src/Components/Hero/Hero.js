@@ -1,7 +1,6 @@
 import React from 'react';
 import Nav from 'Components/Nav/Nav';
 import foodGuessrURL from 'foodGuessrURL';
-import globe from 'Assets/img/globe.png';
 import Link from 'Components/UI/Link/Link';
 
 export default function Hero() {
@@ -33,8 +32,8 @@ export default function Hero() {
       <div className="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
         <img
           className="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full"
-          src={globe}
-          alt=""
+          src="https://images.unsplash.com/photo-1594179047519-f347310d3322?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+          alt="Food"
         />
       </div>
     </div>
