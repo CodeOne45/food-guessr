@@ -22,7 +22,7 @@ export default function Quiz() {
     <div id="quiz">
       <div
         id="quiz-modal"
-        className="m-1 p-1 absolute bg-white top-0 w-44 z-10 rounded"
+        className="m-1 p-1 absolute bg-white top-0 w-60 z-10 rounded"
       >
         <Question parentCallback={callback} />
         <p id="player-answer" />

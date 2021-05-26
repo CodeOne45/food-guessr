@@ -46,7 +46,7 @@ export default function Question({ parentCallback }) {
           id="quiz-img"
           src={meal.strMealThumb} // si meal est null, mettre une img d'erreur
           alt="meal"
-          className="h-full w-auto object-cover"
+          className="h-full w-60 object-cover"
         />
       </div>
     </div>
