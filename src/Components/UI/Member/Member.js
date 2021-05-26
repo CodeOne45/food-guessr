@@ -6,7 +6,7 @@ export default function Member({ name, imageUrl, role }) {
     <li key={name}>
       <div className="flex items-center space-x-4 lg:space-x-6">
         <img
-          className="w-16 h-16 rounded-full lg:w-20 lg:h-20"
+          className="w-16 h-16 rounded-full bg-yellow-200 lg:w-20 lg:h-20"
           src={imageUrl}
           alt=""
         />

@@ -1,38 +1,37 @@
 import React from 'react';
 import Member from 'Components/UI/Member/Member';
+import avatarAman from 'Assets/img/avatar-aman.png';
+import avatarEliot from 'Assets/img/avatar-eliot.png';
+import avatarLoqman from 'Assets/img/avatar-loqman.png';
+import avatarSteven from 'Assets/img/avatar-steven.png';
+import avatarXiumin from 'Assets/img/avatar-xiumin.png';
 
 const people = [
   {
     name: 'Steven VAN',
-    role: 'Co-Founder / CEO',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    role: 'Développeur front-end',
+    imageUrl: avatarSteven,
   },
   {
     name: 'Xiumin LIN',
-    role: 'Co-Founder / CEO',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    role: 'Développeur back-end',
+    imageUrl: avatarXiumin,
   },
   {
     name: 'Aman Kumar',
-    role: 'Co-Founder / CEO',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    role: 'Développeur front-end',
+    imageUrl: avatarAman,
   },
   {
     name: 'Loqman KHALFAOUI',
-    role: 'Co-Founder / CEO',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    role: 'Développeur',
+    imageUrl: avatarLoqman,
   },
   {
     name: 'Eliot GLARNER',
-    role: 'Co-Founder / CEO',
-    imageUrl:
-      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+    role: 'Développeur',
+    imageUrl: avatarEliot,
   },
-  // More people...
 ];
 
 export default function Team() {
