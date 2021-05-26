@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 
-export default function Question() {
+export default function Question({ parentCallback }) {
   const [meal, setMeal] = useState({});
+
   const randomMealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
   const play = () => {
@@ -12,6 +14,8 @@ export default function Question() {
           setMeal(data.meals[0]);
           // eslint-disable-next-line
           console.log(data.meals[0]);
+
+          parentCallback(data.meals[0].strArea);
         },
         error => {
           // eslint-disable-next-line
@@ -25,7 +29,9 @@ export default function Question() {
       <button
         id="quiz-play"
         type="button"
-        onClick={play}
+        onClick={() => {
+          play();
+        }}
         className="font-medium bg-yellow-600 hover:bg-yellow-700 px-7 py-3 rounded text-white w-full"
       >
         J&#39;ai Faim !

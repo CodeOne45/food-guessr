@@ -2,7 +2,8 @@ import React, { useLayoutEffect, useState, useEffect, useMemo } from 'react';
 import Globe from 'react-globe.gl';
 import * as d3 from 'd3';
 
-export default function World() {
+// eslint-disable-next-line react/prop-types
+export default function World({ parentCallback }) {
   const [countries, setCountries] = useState({ features: [] });
   const [hoverD, setHoverD] = useState();
   const [size, setSize] = useState([0, 0]);
@@ -63,6 +64,7 @@ export default function World() {
         onPolygonClick={d => {
           const answer = document.getElementById('player-answer');
           answer.innerHTML = `Pays choisi : ${d.properties.ADMIN}`;
+          parentCallback(d.properties.ADMIN);
         }}
       />
     </div>
