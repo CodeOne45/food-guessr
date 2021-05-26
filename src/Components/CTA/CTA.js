@@ -1,5 +1,6 @@
 import React from 'react';
 import globe from 'Assets/img/globe.jpg';
+import Link from 'Components/UI/Link/Link';
 
 export default function CTA() {
   return (
@@ -110,12 +111,11 @@ export default function CTA() {
                 vulputate id malesuada non. Cras aliquet purus dui laoreet diam
                 sed lacus, fames.
               </p>
-              <a
-                className="block w-full py-3 px-5 text-center bg-white border border-transparent rounded-md shadow-md text-base font-medium text-yellow-700 hover:bg-yellow-200 sm:inline-block sm:w-auto"
-                href="/#"
-              >
-                UN TOUR DU MONDE DES SPÉCIALITÉS CULINAIRES
-              </a>
+              <Link
+                href="/"
+                content="Un tour du monde des spécialités culinaires"
+                type="light"
+              />
             </div>
           </div>
         </div>
