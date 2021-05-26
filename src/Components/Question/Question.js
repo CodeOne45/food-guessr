@@ -1,7 +1,9 @@
+/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
 
-export default function Question() {
+export default function Question({ parentCallback }) {
   const [meal, setMeal] = useState({});
+
   const randomMealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
   const play = () => {
@@ -12,6 +14,8 @@ export default function Question() {
           setMeal(data.meals[0]);
           // eslint-disable-next-line
           console.log(data.meals[0]);
+
+          parentCallback(data.meals[0].strArea);
         },
         error => {
           // eslint-disable-next-line
@@ -22,13 +26,28 @@ export default function Question() {
 
   return (
     <div id="meal-question">
-      <button type="button" onClick={play}>
+      <button
+        id="quiz-play"
+        type="button"
+        onClick={() => {
+          play();
+        }}
+        className="font-medium bg-yellow-600 hover:bg-yellow-700 px-7 py-3 rounded text-white w-full"
+      >
         J&#39;ai Faim !
       </button>
       <div style={meal.strMeal ? { display: 'block' } : { display: 'none' }}>
         <p>Name : {meal.strMeal}</p>
-        <p>Area : {meal.strArea}</p>
-        Image : <image src={meal.strMealThumb} alt="meal picture" />
+        <p>
+          Area : <span className="bg-black hover:bg-white">{meal.strArea}</span>
+        </p>
+        {/* TODO: img peut être factorisé en atome */}
+        <img
+          id="quiz-img"
+          src={meal.strMealThumb} // si meal est null, mettre une img d'erreur
+          alt="meal"
+          className="h-full w-60 object-cover"
+        />
       </div>
     </div>
   );
