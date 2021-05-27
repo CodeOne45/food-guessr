@@ -1,4 +1,14 @@
-## PJS4 - DUT INFO - Food Guessr
+<h1 align="center">PJS4 - DUT INFO - Food Guessre 🍔</h1>
+<p>
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
+</p>
+
+### Project team :
+ - KUMAR Aman (github : CodeOne45) - Project Manager / Full-Stack Developer 
+ - LIN Xiumin (github : Xiumin-Lin) - Backend Developer
+ - VAN Steven (github : Steven) - Frontend Developer  / Designr 
+ - GLARNER Eliot (github : epg1213) 
+ - KHALFAOUI Loqman (github : lokiklf) - Web Editor
 
 ## Table of Contents:
 
