@@ -3,6 +3,8 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-blue.svg?cacheSeconds=2592000" />
 </p>
 
+"Food Guessr" is an interactive website allowing the user to discover dishes from all over the world through a fun search game / quiz. The name or photo of a random dish is displayed and the player must select on a 3D globe the country of origin of the dish. Detailed dish information is then displayed if the user wants to know more.
+
 ### Project team :
  - KUMAR Aman (github : CodeOne45) - Project Manager / Full-Stack Developer 
  - LIN Xiumin (github : Xiumin-Lin) - Backend Developer
