@@ -8,7 +8,7 @@ export default function Member({ name, imageUrl, role }) {
 
   useEffect(() => {
     memberTween.current = gsap.to(member.current, {
-      scale: 2,
+      scale: 1.5,
       paused: true,
     });
   });
