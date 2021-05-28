@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { gsap } from 'gsap';
 
 export default function About() {
+  const aboutText = React.createRef();
+
+  useEffect(() => {
+    gsap.fromTo(
+      aboutText.current,
+      {
+        y: '100%',
+        opacity: 0,
+      },
+      { y: 0, opacity: 1, ease: 'back.out(1.7)', delay: 0.5 }
+    );
+  });
   return (
-    <section id="about" className="relative py-16 bg-white overflow-hidden">
+    <section id="aboutText" className="relative py-16 bg-white overflow-hidden">
       <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
         <div
           className="relative h-full text-lg max-w-prose mx-auto"
@@ -50,7 +63,7 @@ export default function About() {
         </div>
       </div>
       <div className="relative px-4 sm:px-6 lg:px-8">
-        <div className="text-lg max-w-prose mx-auto">
+        <div className="text-lg max-w-prose mx-auto" ref={aboutText}>
           <h1>
             <span className="block text-base text-center text-yellow-600 font-semibold tracking-wide uppercase">
               Introduction

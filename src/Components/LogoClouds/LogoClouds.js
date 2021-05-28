@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import htmlCssLogo from 'Assets/img/htmlCss.svg';
 import nodeJsLogo from 'Assets/img/nodeJs.svg';
 import reactLogo from 'Assets/img/react.svg';
@@ -13,11 +15,29 @@ const logos = [
 ];
 
 export default function LogoClouds() {
+  const logoCloudText = React.createRef();
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from(logoCloudText.current, {
+      x: '100%',
+      opacity: 0,
+      ease: 'back.out(1.7)',
+      scrollTrigger: {
+        trigger: '#logo-clouds',
+        start: 'top center',
+        end: 'top top',
+        toggleActions: 'play pause resume reset',
+      },
+    });
+  });
+
   return (
     <section id="logo-clouds" className="bg-white">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
-          <div>
+          <div ref={logoCloudText}>
             <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
               Fabriqué avec les dernières technologies web
             </h2>
