@@ -1,18 +1,32 @@
-import React, { useLayoutEffect, useState, useEffect, useMemo } from 'react';
+import React, {
+  useLayoutEffect,
+  useState,
+  useEffect,
+  useMemo,
+  useRef,
+} from 'react';
 import Globe from 'react-globe.gl';
 import * as d3 from 'd3';
 
 // eslint-disable-next-line react/prop-types
 export default function World({ parentCallback }) {
+  const globeRef = useRef();
   const [countries, setCountries] = useState({ features: [] });
   const [hoverD, setHoverD] = useState();
   const [size, setSize] = useState([0, 0]);
-
+  // load data
   useEffect(() => {
     // load data // src: http://geojson.xyz/
     fetch('./ne_110m_admin_0_countries.geojson')
       .then(res => res.json())
       .then(setCountries);
+  }, []);
+
+  // auto rotation of the globe
+  useEffect(() => {
+    globeRef.current.controls().autoRotate = true;
+    globeRef.current.controls().autoRotateSpeed = -0.5;
+    globeRef.current.pointOfView({ altitude: 3 }, 5000);
   }, []);
 
   // responsive design for the globe
@@ -42,6 +56,7 @@ export default function World({ parentCallback }) {
   return (
     <div id="world-3d">
       <Globe
+        ref={globeRef}
         width={newWidth}
         height={newHeight}
         globeImageUrl="./earth-blue-marble.jpg"
@@ -56,14 +71,10 @@ export default function World({ parentCallback }) {
         }
         polygonSideColor={() => 'rgba(0, 100, 0, 0.15)'}
         polygonStrokeColor={() => '#111'}
-        polygonLabel={({ properties: d }) =>
-          `<b>${d.ADMIN} (${d.ISO_A2}):</b> <br />`
-        }
+        polygonLabel={({ properties: d }) => `<b>${d.ADMIN}</b> <br />`}
         onPolygonHover={setHoverD}
         polygonsTransitionDuration={300}
         onPolygonClick={d => {
-          // const answer = document.getElementById('player-answer');
-          // answer.innerHTML = `Pays choisi : ${d.properties.ADMIN}`;
           parentCallback(d.properties.ADMIN);
         }}
       />
