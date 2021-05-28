@@ -1,16 +1,30 @@
-import React from 'react';
-import Nav from 'Components/Nav/Nav';
+import React, { useEffect } from 'react';
+import { gsap } from 'gsap';
 import foodGuessrURL from 'foodGuessrURL';
 import Link from 'Components/UI/Link/Link';
+import Nav from 'Components/Nav/Nav';
 
 export default function Hero() {
+  const hero = React.createRef();
+
+  useEffect(() => {
+    gsap.fromTo(
+      hero.current,
+      {
+        x: '30rem',
+        opacity: 0,
+      },
+      { x: 0, opacity: 1, ease: 'back.out(1.7)', delay: 0.5 }
+    );
+  });
+
   return (
-    <div className="relative bg-white overflow-hidden">
+    <section id="hero" className="relative bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="relative z-10 pb-8 bg-white sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
           <Nav />
           <main className="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
-            <div className="sm:text-center lg:text-left">
+            <div className="sm:text-center lg:text-left" ref={hero}>
               <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
                 <span className="block xl:inline">Food</span>{' '}
                 <span className="block text-yellow-600 xl:inline">Guessr</span>
@@ -36,6 +50,6 @@ export default function Hero() {
           alt="Food"
         />
       </div>
-    </div>
+    </section>
   );
 }
