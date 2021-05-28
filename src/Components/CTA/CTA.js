@@ -4,7 +4,7 @@ import Link from 'Components/UI/Link/Link';
 
 export default function CTA() {
   return (
-    <div id="cta" className="relative py-16 bg-white">
+    <section id="cta" className="relative py-16 bg-white">
       <div
         className="hidden absolute top-0 inset-x-0 h-1/2 bg-gray-50 lg:block"
         aria-hidden="true"
@@ -120,6 +120,6 @@ export default function CTA() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
