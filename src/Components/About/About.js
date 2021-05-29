@@ -1,11 +1,24 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function About() {
+  const aboutTween = useRef();
   const aboutText = React.createRef();
 
   useEffect(() => {
-    gsap.fromTo(
+    gsap.registerPlugin(ScrollTrigger);
+
+    aboutTween.current = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#about',
+        start: 'top center',
+        end: 'top top',
+        toggleActions: 'play none none reset',
+      },
+    });
+
+    aboutTween.current.fromTo(
       aboutText.current,
       {
         y: '100%',
@@ -15,7 +28,7 @@ export default function About() {
     );
   });
   return (
-    <section id="aboutText" className="relative py-16 bg-white overflow-hidden">
+    <section id="about" className="relative py-16 bg-white overflow-hidden">
       <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
         <div
           className="relative h-full text-lg max-w-prose mx-auto"
