@@ -27,7 +27,7 @@ export default function LogoClouds() {
         trigger: '#logo-clouds',
         start: 'top center',
         end: 'top top',
-        toggleActions: 'play pause resume reset',
+        toggleActions: 'play none none reset',
       },
     });
 

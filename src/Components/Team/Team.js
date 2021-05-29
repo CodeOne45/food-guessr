@@ -49,7 +49,7 @@ export default function Team() {
         trigger: '#team',
         start: 'top center',
         end: 'top top',
-        toggleActions: 'play pause resume reset',
+        toggleActions: 'play none none reset',
       },
     });
 

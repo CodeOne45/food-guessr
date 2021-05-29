@@ -18,7 +18,7 @@ export default function CTA() {
         trigger: '#cta',
         start: 'top center',
         end: 'top top',
-        toggleActions: 'play pause resume reset',
+        toggleActions: 'play none none reset',
       },
     });
   });
