@@ -21,7 +21,7 @@ const people = [
   },
   {
     name: 'Aman Kumar',
-    role: 'Développeur front-end',
+    role: 'Chef de projet / Développeur',
     imageUrl: avatarAman,
   },
   {

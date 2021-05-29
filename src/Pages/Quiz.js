@@ -1,6 +1,8 @@
+import React, { useEffect, useState } from 'react';
+import { gsap } from 'gsap';
 import Question from 'Components/Question/Question';
 import World from 'Components/World/World';
-import React, { useState } from 'react';
+import './Quiz.css';
 
 export default function Quiz() {
   const [goodAnswer, setGoodAnswer] = useState('');
@@ -8,6 +10,15 @@ export default function Quiz() {
   const [result, setResult] = useState('');
   const countriesAPI = 'https://restcountries.eu/rest/v2/name/';
 
+  const cloudsFirstLayer = React.createRef();
+  const cloudsSecondLayer = React.createRef();
+  const overlay = React.createRef();
+
+  useEffect(() => {
+    gsap.to(cloudsFirstLayer.current, { x: '-100%', delay: 1, duration: 1 });
+    gsap.to(cloudsSecondLayer.current, { x: '100%', delay: 1, duration: 1 });
+    gsap.to(overlay.current, { y: '-100%', delay: 2 });
+  });
   const callbackGoodAnswer = answer => {
     setGoodAnswer(answer);
   };
@@ -33,16 +44,22 @@ export default function Quiz() {
   };
 
   return (
-    <div id="quiz">
-      <div
-        id="quiz-modal"
-        className="m-1 p-1 absolute bg-white top-0 w-60 z-10 rounded"
-      >
-        <Question parentCallback={callbackGoodAnswer} />
-        <p>Pays choisis : {playerAnswer}</p>
-        <p>Result : {result}</p>
+    <section>
+      <div id="quiz">
+        <div
+          id="quiz-modal"
+          className="m-1 p-1 absolute bg-white top-0 w-60 z-10 rounded"
+        >
+          <Question parentCallback={callbackGoodAnswer} />
+          <p>Pays choisis : {playerAnswer}</p>
+          <p>Result : {result}</p>
+        </div>
+        <World parentCallback={callbackPlayerAnswer} />
       </div>
-      <World parentCallback={callbackPlayerAnswer} />
-    </div>
+      <div className="overlay" ref={overlay}>
+        <div className="layer layer-1" ref={cloudsFirstLayer} />
+        <div className="layer layer-2" ref={cloudsSecondLayer} />
+      </div>
+    </section>
   );
 }
