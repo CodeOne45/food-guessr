@@ -1,8 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import globe from 'Assets/img/globe.jpg';
 import Link from 'Components/UI/Link/Link';
 
 export default function CTA() {
+  const CtaText = React.createRef();
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    gsap.from(CtaText.current, {
+      y: '100%',
+      opacity: 0,
+      ease: 'back.out(1.7)',
+      scrollTrigger: {
+        trigger: '#cta',
+        start: 'top center',
+        end: 'top top',
+        toggleActions: 'play none none reset',
+      },
+    });
+  });
   return (
     <section id="cta" className="relative py-16 bg-white">
       <div
@@ -61,7 +80,10 @@ export default function CTA() {
                 />
               </svg>
             </div>
-            <div className="relative max-w-md mx-auto py-12 px-4 space-y-6 sm:max-w-3xl sm:py-16 sm:px-6 lg:max-w-none lg:p-0 lg:col-start-4 lg:col-span-6">
+            <div
+              ref={CtaText}
+              className="relative max-w-md mx-auto py-12 px-4 space-y-6 sm:max-w-3xl sm:py-16 sm:px-6 lg:max-w-none lg:p-0 lg:col-start-4 lg:col-span-6"
+            >
               <h2
                 className="text-3xl font-extrabold text-white"
                 id="join-heading"
