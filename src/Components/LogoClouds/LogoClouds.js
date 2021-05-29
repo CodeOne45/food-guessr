@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import htmlCssLogo from 'Assets/img/htmlCss.svg';
@@ -15,15 +15,14 @@ const logos = [
 ];
 
 export default function LogoClouds() {
-  const logoCloudText = React.createRef();
+  const logoCloudsTween = useRef();
+  const logosIcon = React.createRef();
+  const logoCloudsText = React.createRef();
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    gsap.from(logoCloudText.current, {
-      x: '100%',
-      opacity: 0,
-      ease: 'back.out(1.7)',
+    logoCloudsTween.current = gsap.timeline({
       scrollTrigger: {
         trigger: '#logo-clouds',
         start: 'top center',
@@ -31,13 +30,29 @@ export default function LogoClouds() {
         toggleActions: 'play pause resume reset',
       },
     });
+
+    logoCloudsTween.current
+      .from(logoCloudsText.current, {
+        x: '-100%',
+        opacity: 0,
+        ease: 'back.out(1.7)',
+      })
+      .from(
+        logosIcon.current,
+        {
+          x: '100%',
+          opacity: 0,
+          ease: 'back.out(1.7)',
+        },
+        '>'
+      );
   });
 
   return (
     <section id="logo-clouds" className="bg-white">
       <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
         <div className="lg:grid lg:grid-cols-2 lg:gap-8 lg:items-center">
-          <div ref={logoCloudText}>
+          <div ref={logoCloudsText}>
             <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
               Fabriqué avec les dernières technologies web
             </h2>
@@ -47,7 +62,10 @@ export default function LogoClouds() {
               ullamcorper eu enim et fermentum, augue.
             </p>
           </div>
-          <div className="mt-8 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2">
+          <div
+            ref={logosIcon}
+            className="mt-8 grid grid-cols-2 gap-0.5 md:grid-cols-3 lg:mt-0 lg:grid-cols-2"
+          >
             {logos.map(logo => (
               <Logo src={logo.src} alt={logo.alt} href={logo.href} />
             ))}
