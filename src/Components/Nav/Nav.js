@@ -89,7 +89,7 @@ export default function Nav() {
               <Popover.Panel
                 focus
                 static
-                className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
+                className="z-50 absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
               >
                 <div className="rounded-lg shadow-md bg-yellow-50 ring-1 ring-black ring-opacity-5 overflow-hidden">
                   <div className="px-5 pt-4 flex items-center justify-between">
