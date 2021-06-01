@@ -16,7 +16,7 @@ export default function World({ parentCallback }) {
   const [size, setSize] = useState([0, 0]);
   // load data
   useEffect(() => {
-    // load data // src: http://geojson.xyz/
+    // src: http://geojson.xyz/
     fetch('./ne_110m_admin_0_countries.geojson')
       .then(res => res.json())
       .then(setCountries);
@@ -25,10 +25,9 @@ export default function World({ parentCallback }) {
   // auto rotation of the globe
   useEffect(() => {
     globeRef.current.controls().autoRotate = true;
-    globeRef.current.controls().autoRotateSpeed = -0.5;
+    globeRef.current.controls().autoRotateSpeed = -0.2;
     globeRef.current.pointOfView({ altitude: 3 }, 5000);
   }, []);
-
   // responsive design for the globe
   useLayoutEffect(() => {
     function updateSize() {
@@ -74,7 +73,21 @@ export default function World({ parentCallback }) {
         polygonLabel={({ properties: d }) => `<b>${d.ADMIN}</b> <br />`}
         onPolygonHover={setHoverD}
         polygonsTransitionDuration={300}
-        onPolygonClick={d => {
+        onPolygonClick={(d, e) => {
+          try {
+            // TODO travel to clicked country (Not optimized)
+            globeRef.current.pointOfView(
+              {
+                lat: globeRef.current.toGlobeCoords(e.x, e.y).lat,
+                lng: globeRef.current.toGlobeCoords(e.x, e.y).lng,
+                altitude: 1,
+              },
+              2500
+            );
+          } catch (err) {
+            console.log(err); // TypeError
+          }
+
           parentCallback(d.properties.ADMIN);
         }}
       />
