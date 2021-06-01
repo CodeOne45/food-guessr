@@ -1,6 +1,7 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import { gsap } from 'gsap';
 import NavLink from 'Components/UI/NavLink/NavLink';
 import hamburger from 'Assets/img/hamburger.svg';
 
@@ -11,6 +12,17 @@ const navigation = [
 ];
 
 export default function Nav() {
+  const burger = React.createRef();
+  const burgerTween = React.createRef();
+
+  useEffect(() => {
+    burgerTween.current = gsap.to(burger.current, {
+      rotation: 360,
+      duration: 1,
+      paused: true,
+    });
+  });
+
   return (
     <div>
       <svg
@@ -36,9 +48,12 @@ export default function Nav() {
                     <div className="h-6 w-6" />
                     <a href="/#">
                       <img
-                        alt=""
-                        className="h-8 w-auto sm:h-10"
                         src={hamburger}
+                        alt="Hamburger"
+                        className="h-8 w-auto sm:h-10"
+                        ref={burger}
+                        onMouseEnter={() => burgerTween.current.play()}
+                        onMouseLeave={() => burgerTween.current.reverse()}
                       />
                     </a>
                     <div className="-mr-2 flex items-center md:hidden">
@@ -81,9 +96,12 @@ export default function Nav() {
                     <div className="h-6 w-6" />
                     <div>
                       <img
-                        className="h-8 w-auto"
                         src={hamburger}
                         alt="Hamburger"
+                        className="h-8 w-auto"
+                        ref={burger}
+                        onMouseEnter={() => burgerTween.current.play()}
+                        onMouseLeave={() => burgerTween.current.reverse()}
                       />
                     </div>
                     <div className="-mr-2">

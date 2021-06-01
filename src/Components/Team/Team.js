@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Member from 'Components/UI/Member/Member';
 import avatarAman from 'Assets/img/avatar-aman.png';
 import avatarEliot from 'Assets/img/avatar-eliot.png';
@@ -19,7 +21,7 @@ const people = [
   },
   {
     name: 'Aman Kumar',
-    role: 'Développeur front-end',
+    role: 'Chef de projet / Développeur',
     imageUrl: avatarAman,
   },
   {
@@ -35,11 +37,44 @@ const people = [
 ];
 
 export default function Team() {
+  const teamTween = useRef();
+  const memberIcon = React.createRef();
+  const teamText = React.createRef();
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    teamTween.current = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#team',
+        start: 'top center',
+        end: 'top top',
+        toggleActions: 'play none none reset',
+      },
+    });
+
+    teamTween.current
+      .from(teamText.current, {
+        x: '-100%',
+        opacity: 0,
+        ease: 'back.out(1.7)',
+      })
+      .from(
+        memberIcon.current,
+        {
+          x: '100%',
+          opacity: 0,
+          ease: 'back.out(1.7)',
+        },
+        '>'
+      );
+  });
+
   return (
-    <div id="team" className="bg-white">
+    <section id="team" className="bg-white">
       <div className="mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-3 lg:gap-8">
-          <div className="space-y-5 sm:space-y-4">
+          <div className="space-y-5 sm:space-y-4" ref={teamText}>
             <h2 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
               Notre équipe
             </h2>
@@ -48,7 +83,10 @@ export default function Team() {
             </p>
           </div>
           <div className="lg:col-span-2">
-            <ul className="space-y-12 sm:grid sm:grid-cols-2 sm:gap-12 sm:space-y-0 lg:gap-x-8">
+            <ul
+              ref={memberIcon}
+              className="space-y-12 sm:grid sm:grid-cols-2 sm:gap-12 sm:space-y-0 lg:gap-x-8"
+            >
               {people.map(person => (
                 <Member
                   name={person.name}
@@ -60,6 +98,6 @@ export default function Team() {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

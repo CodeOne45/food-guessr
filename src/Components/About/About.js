@@ -1,8 +1,34 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 export default function About() {
+  const aboutTween = useRef();
+  const aboutText = React.createRef();
+
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+
+    aboutTween.current = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#about',
+        start: 'top center',
+        end: 'top top',
+        toggleActions: 'play none none reset',
+      },
+    });
+
+    aboutTween.current.fromTo(
+      aboutText.current,
+      {
+        y: '100%',
+        opacity: 0,
+      },
+      { y: 0, opacity: 1, ease: 'back.out(1.7)', delay: 0.5 }
+    );
+  });
   return (
-    <div id="about" className="relative py-16 bg-white overflow-hidden">
+    <section id="about" className="relative py-16 bg-white overflow-hidden">
       <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
         <div
           className="relative h-full text-lg max-w-prose mx-auto"
@@ -15,25 +41,6 @@ export default function About() {
             fill="none"
             viewBox="0 0 404 384"
           >
-            <defs>
-              <pattern
-                id="74b3fd99-0a6f-4271-bef2-e80eeafdf357"
-                x={0}
-                y={0}
-                width={20}
-                height={20}
-                patternUnits="userSpaceOnUse"
-              >
-                <rect
-                  x={0}
-                  y={0}
-                  width={4}
-                  height={4}
-                  className="text-gray-200"
-                  fill="currentColor"
-                />
-              </pattern>
-            </defs>
             <rect
               width={404}
               height={384}
@@ -47,25 +54,6 @@ export default function About() {
             fill="none"
             viewBox="0 0 404 384"
           >
-            <defs>
-              <pattern
-                id="f210dbf6-a58d-4871-961e-36d5016a0f49"
-                x={0}
-                y={0}
-                width={20}
-                height={20}
-                patternUnits="userSpaceOnUse"
-              >
-                <rect
-                  x={0}
-                  y={0}
-                  width={4}
-                  height={4}
-                  className="text-gray-200"
-                  fill="currentColor"
-                />
-              </pattern>
-            </defs>
             <rect
               width={404}
               height={384}
@@ -79,25 +67,6 @@ export default function About() {
             fill="none"
             viewBox="0 0 404 384"
           >
-            <defs>
-              <pattern
-                id="d3eb07ae-5182-43e6-857d-35c643af9034"
-                x={0}
-                y={0}
-                width={20}
-                height={20}
-                patternUnits="userSpaceOnUse"
-              >
-                <rect
-                  x={0}
-                  y={0}
-                  width={4}
-                  height={4}
-                  className="text-gray-200"
-                  fill="currentColor"
-                />
-              </pattern>
-            </defs>
             <rect
               width={404}
               height={384}
@@ -107,7 +76,7 @@ export default function About() {
         </div>
       </div>
       <div className="relative px-4 sm:px-6 lg:px-8">
-        <div className="text-lg max-w-prose mx-auto">
+        <div className="text-lg max-w-prose mx-auto" ref={aboutText}>
           <h1>
             <span className="block text-base text-center text-yellow-600 font-semibold tracking-wide uppercase">
               Introduction
@@ -124,6 +93,6 @@ export default function About() {
           </p>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
