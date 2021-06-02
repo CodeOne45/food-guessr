@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import globe from 'Assets/img/globe.jpg';
 import Link from 'Components/UI/Link/Link';
+import foodGuessrURL from 'foodGuessrURL';
 
 export default function CTA() {
   const CtaText = React.createRef();
@@ -96,7 +97,7 @@ export default function CTA() {
                 sed lacus, fames.
               </p>
               <Link
-                href="/"
+                href={foodGuessrURL.quiz}
                 content="Un tour du monde des spécialités culinaires"
                 type="light"
               />
