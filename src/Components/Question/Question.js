@@ -5,21 +5,23 @@ export default function Question({ parentCallback }) {
   const [meal, setMeal] = useState({});
 
   const randomMealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
+  // const randomMealAPI = 'https://api-food-guessr.herokuapp.com/meals/random';
 
   const play = () => {
     fetch(randomMealAPI)
       .then(res => res.json())
       .then(
         data => {
-          setMeal(data.meals[0]);
-          // eslint-disable-next-line
-          console.log(data.meals[0]);
-
-          parentCallback(data.meals[0].strArea);
+          try {
+            setMeal(data.meals[0]);
+            console.log(data.meals[0]); // TODO a retirer
+            parentCallback(data.meals[0].strArea);
+          } catch (err) {
+            console.log(err); // TypeError
+          }
         },
         error => {
-          // eslint-disable-next-line
-          console.log(error);
+          console.log(error); // SyntaxError
         }
       );
   };

@@ -32,8 +32,7 @@ export default function Quiz() {
           else setResult('Non OK');
         },
         error => {
-          // eslint-disable-next-line
-        console.log(error);
+          console.log(error);
         }
       );
   };
