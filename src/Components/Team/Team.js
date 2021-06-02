@@ -47,7 +47,7 @@ export default function Team() {
     teamTween.current = gsap.timeline({
       scrollTrigger: {
         trigger: '#team',
-        start: 'top center',
+        start: 'top bottom',
         end: 'top top',
         toggleActions: 'play none none reset',
       },
