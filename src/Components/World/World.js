@@ -59,7 +59,7 @@ export default function World({ parentCallback }) {
         width={newWidth}
         height={newHeight}
         globeImageUrl="./earth-blue-marble.jpg"
-        backgroundImageUrl="./night-sky.png"
+        backgroundImageUrl="./bg.jpg"
         lineHoverPrecision={0}
         polygonsData={countries.features.filter(
           d => d.properties.ISO_A2 !== 'AQ'
