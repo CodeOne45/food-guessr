@@ -28,6 +28,7 @@ export default function World({ parentCallback }) {
     globeRef.current.controls().autoRotateSpeed = -0.2;
     globeRef.current.pointOfView({ altitude: 3 }, 5000);
   }, []);
+
   // responsive design for the globe
   useLayoutEffect(() => {
     function updateSize() {
@@ -40,7 +41,7 @@ export default function World({ parentCallback }) {
 
   const colorScale = d3.scaleSequentialSqrt(d3.interpolateYlOrRd);
 
-  // GDP per capita (avoiding countries with small pop) = PIB par habitant
+  // TODO GDP per capita (avoiding countries with small pop) = PIB par habitant
   const getVal = feat =>
     feat.properties.GDP_MD_EST / Math.max(1e5, feat.properties.POP_EST);
 
@@ -53,47 +54,42 @@ export default function World({ parentCallback }) {
   const [newWidth, newHeight] = size;
 
   return (
-    <div id="world-3d">
-      <Globe
-        ref={globeRef}
-        width={newWidth}
-        height={newHeight}
-        globeImageUrl="./earth-blue-marble.jpg"
-        backgroundImageUrl="./bg.jpg"
-        lineHoverPrecision={0}
-        polygonsData={countries.features.filter(
-          d => d.properties.ISO_A2 !== 'AQ'
-        )}
-        polygonAltitude={d => (d === hoverD ? 0.12 : 0.06)}
-        polygonCapColor={d =>
-          d === hoverD ? 'steelblue' : colorScale(getVal(d))
+    <Globe
+      ref={globeRef}
+      width={newWidth}
+      height={newHeight}
+      globeImageUrl="./earth-blue-marble.jpg"
+      backgroundImageUrl="./bg.jpg"
+      lineHoverPrecision={0}
+      polygonsData={countries.features.filter(
+        d => d.properties.ISO_A2 !== 'AQ'
+      )}
+      polygonAltitude={d => (d === hoverD ? 0.12 : 0.06)}
+      polygonCapColor={d =>
+        d === hoverD ? 'steelblue' : colorScale(getVal(d))
+      }
+      polygonSideColor={() => 'rgba(0, 100, 0, 0.15)'}
+      polygonStrokeColor={() => '#111'}
+      polygonLabel={({ properties: d }) => `<b>${d.ADMIN}</b> <br />`}
+      onPolygonHover={setHoverD}
+      polygonsTransitionDuration={300}
+      onPolygonClick={(d, e) => {
+        try {
+          // TODO travel to clicked country (Not optimized)
+          globeRef.current.pointOfView(
+            {
+              lat: globeRef.current.toGlobeCoords(e.x, e.y).lat,
+              lng: globeRef.current.toGlobeCoords(e.x, e.y).lng,
+              altitude: 1,
+            },
+            2500
+          );
+        } catch (err) {
+          console.log(err); // TypeError
         }
-        polygonSideColor={() => 'rgba(0, 100, 0, 0.15)'}
-        polygonStrokeColor={() => '#111'}
-        polygonLabel={({ properties: d }) => `<b>${d.ADMIN}</b> <br />`}
-        onPolygonHover={setHoverD}
-        polygonsTransitionDuration={300}
-        onPolygonClick={(d, e) => {
-          try {
-            // TODO travel to clicked country (Not optimized)
-            globeRef.current.pointOfView(
-              {
-                lat: globeRef.current.toGlobeCoords(e.x, e.y).lat,
-                lng: globeRef.current.toGlobeCoords(e.x, e.y).lng,
-                altitude: 1,
-              },
-              2500
-            );
-          } catch (err) {
-            console.log(err); // TypeError
-          }
 
-          parentCallback(d.properties.ADMIN);
-        }}
-      />
-    </div>
+        parentCallback(d.properties.ADMIN);
+      }}
+    />
   );
 }
-
-// GDP: <i>${d.GDP_MD_EST}</i> M$<br/>
-// Population: <i>${d.POP_EST}</i>
