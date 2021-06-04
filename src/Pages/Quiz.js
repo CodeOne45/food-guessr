@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
 import AnimatedClouds from 'Components/AnimatedClouds/AnimatedClouds';
+import Answer from 'Components/Answer/Answer';
 import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
 import Question from 'Components/Question/Question';
 import World from 'Components/World/World';
@@ -53,19 +54,7 @@ export default function Quiz() {
         <div className="mt-5 px-6 flex-grow">
           <nav className="flex flex-col px-2" aria-label="Sidebar">
             <Question parentCallback={callbackGoodAnswer} />
-
-            <div className="md:text-xl mt-6 space-y-3">
-              <p>
-                <span className="font-bold text-gray-900">Pays choisis : </span>
-                <span className="font-medium text-yellow-600">
-                  {playerAnswer}
-                </span>
-              </p>
-              <p>
-                <span className="font-bold text-gray-900"> Réponse : </span>
-                <span className="font-medium text-yellow-600">{result}</span>
-              </p>
-            </div>
+            <Answer playerAnswer={playerAnswer} result={result} />
           </nav>
         </div>
       </div>

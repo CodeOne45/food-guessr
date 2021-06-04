@@ -1,5 +1,5 @@
-/* eslint-disable react/prop-types */
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 export default function Question({ parentCallback }) {
   const [meal, setMeal] = useState({});
@@ -68,3 +68,7 @@ export default function Question({ parentCallback }) {
     </div>
   );
 }
+
+Question.propTypes = {
+  parentCallback: PropTypes.string.isRequired,
+};
