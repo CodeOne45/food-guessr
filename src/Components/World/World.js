@@ -30,7 +30,6 @@ export default function World({ parentCallback }) {
     fetch(countriesNameURL)
       .then(res => res.json())
       .then(setCountriesName);
-    console.log(countriesName);
     // auto rotation of the globe
     globeRef.current.controls().autoRotate = true;
     globeRef.current.controls().autoRotateSpeed = -0.2;
@@ -68,6 +67,7 @@ export default function World({ parentCallback }) {
 
   const [newWidth, newHeight] = size; // adapter le globe à la taille de l'écran
   let flagScr; // lien vers l'image du drapeau d'un pays
+  let clickLocation; // les coords du pays clické
 
   return (
     <Globe
@@ -78,7 +78,7 @@ export default function World({ parentCallback }) {
       backgroundImageUrl="./bg.jpg"
       lineHoverPrecision={0}
       polygonsData={countries.features.filter(
-        d => d.properties.ISO_A2 !== 'AQ'
+        d => !['AQ', '-99'].includes(d.properties.ISO_A2)
       )}
       polygonAltitude={d => (d === hoverD ? 0.12 : 0.06)}
       polygonCapColor={d =>
@@ -89,29 +89,41 @@ export default function World({ parentCallback }) {
       polygonLabel={({ properties: d }) => {
         flagScr = `${countrieFlagURL}${d.ISO_A3.toLowerCase()}.svg`;
         console.log(flagScr);
-        return `<div">
+        return `<div class="p-1 w-60 bg-gray-500">
                   <b>${d.ADMIN}</b>
-                  <img src="${flagScr}" alt="Flag" class="h-full w-60 object-cover" />
+                  <img src="${flagScr}" alt="Flag" />
                 </div>`;
       }}
       onPolygonHover={setHoverD}
       polygonsTransitionDuration={300}
-      onPolygonClick={(d, e) => {
+      onPolygonClick={({ properties: d }) => {
         try {
+          // se déplace au coord enregistré dans les données
+          clickLocation = countriesName.find(
+            item => item.alpha3Code === d.ISO_A3
+          ).latlng;
+          console.log(clickLocation);
+          // Se déplace à l'endroit indiqué par la souris
+          // if (!clickLocation) {
+          //   clickLocation = [
+          //     globeRef.current.toGlobeCoords(e.x, e.y).lat,
+          //     globeRef.current.toGlobeCoords(e.x, e.y).lng,
+          //   ];
+          // }
           // TODO travel to clicked country (Not optimized)
           globeRef.current.pointOfView(
             {
-              lat: globeRef.current.toGlobeCoords(e.x, e.y).lat,
-              lng: globeRef.current.toGlobeCoords(e.x, e.y).lng,
+              lat: clickLocation[0],
+              lng: clickLocation[1],
               altitude: 2,
             },
             2500
           );
         } catch (err) {
-          console.log("[Err] Can't travel to here"); // TypeError
+          console.log(`[Err] Can't travel to here : ${err}`); // TypeError
         }
 
-        parentCallback(d.properties.ADMIN);
+        parentCallback(d.ADMIN, d.ISO_A3.toLowerCase());
       }}
     />
   );

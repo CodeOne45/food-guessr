@@ -9,7 +9,7 @@ export default function Quiz() {
   const [playerAnswer, setPlayerAnswer] = useState('');
   const [result, setResult] = useState('');
   const [score, setScore] = useState(0);
-  const countriesAPI = 'https://restcountries.eu/rest/v2/name/';
+  const countriesAPI = 'https://restcountries.eu/rest/v2/alpha?codes=';
   const randomMealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
   // const randomCustomMealAPI = 'https://api-food-guessr.herokuapp.com/meals/random';
 
@@ -46,25 +46,29 @@ export default function Quiz() {
       );
   };
 
-  const checkAnswer = pAnswer => {
-    fetch(countriesAPI + pAnswer)
+  const checkAnswer = pAnswerISOA3 => {
+    fetch(countriesAPI + pAnswerISOA3)
       .then(res => res.json())
       .then(
         data => {
-          if (data[0].demonym === meal.strArea) {
-            setResult('OK');
-            setScore(score + 100);
-          } else setResult('Non OK');
+          try {
+            if (data[0].demonym === meal.strArea) {
+              setResult('OK'); // TODO A CHANGER
+              setScore(score + 100);
+            } else setResult('Non OK');
+          } catch (err) {
+            console.log(`[Err] No data on the selected country : ${err}`);
+          }
         },
         error => {
-          console.log(error);
+          console.log(`[Err] Checking answer fail : ${error}`);
         }
       );
   };
 
-  const callbackPlayerAnswer = pAnswer => {
-    setPlayerAnswer(pAnswer);
-    checkAnswer(pAnswer);
+  const callbackPlayerAnswer = (pAnswerName, pAnswerISOA3) => {
+    setPlayerAnswer(pAnswerName);
+    checkAnswer(pAnswerISOA3);
   };
 
   return (
