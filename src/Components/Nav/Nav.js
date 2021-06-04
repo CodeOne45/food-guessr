@@ -1,7 +1,6 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
-import { gsap } from 'gsap';
 import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
 import NavLink from 'Components/UI/NavLink/NavLink';
 
@@ -12,17 +11,6 @@ const navigation = [
 ];
 
 export default function Nav() {
-  const burger = React.createRef();
-  const burgerTween = React.createRef();
-
-  useEffect(() => {
-    burgerTween.current = gsap.to(burger.current, {
-      rotation: 360,
-      duration: 1,
-      paused: true,
-    });
-  });
-
   return (
     <div>
       <svg

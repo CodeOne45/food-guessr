@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { gsap } from 'gsap';
+import React, { useState } from 'react';
 import AnimatedClouds from 'Components/AnimatedClouds/AnimatedClouds';
 import Answer from 'Components/Answer/Answer';
 import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
@@ -12,16 +11,6 @@ export default function Quiz() {
   const [result, setResult] = useState('');
   const countriesAPI = 'https://restcountries.eu/rest/v2/name/';
 
-  const burger = React.createRef();
-  const burgerTween = React.createRef();
-
-  useEffect(() => {
-    burgerTween.current = gsap.to(burger.current, {
-      rotation: 360,
-      duration: 1,
-      paused: true,
-    });
-  });
   const callbackGoodAnswer = answer => {
     setGoodAnswer(answer);
   };
