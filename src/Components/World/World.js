@@ -12,21 +12,29 @@ import * as d3 from 'd3';
 export default function World({ parentCallback }) {
   const globeRef = useRef();
   const [countries, setCountries] = useState({ features: [] });
+  const [countriesName, setCountriesName] = useState([]);
   const [hoverD, setHoverD] = useState();
   const [size, setSize] = useState([0, 0]);
+  const countriesDataURL = './ne_110m_admin_0_countries.geojson';
+  const countriesNameURL = './restcountries_all.json';
+  const geoLocationURL = 'https://geolocation-db.com/json/';
+  const countrieFlagURL = 'https://restcountries.eu/data/';
+
   // load data
   useEffect(() => {
-    // src: http://geojson.xyz/
-    fetch('./ne_110m_admin_0_countries.geojson')
+    // load countries data (src: http://geojson.xyz/)
+    fetch(countriesDataURL)
       .then(res => res.json())
       .then(setCountries);
-  }, []);
-
-  // auto rotation of the globe
-  useEffect(() => {
+    // load countries name data (src: https://restcountries.eu/)
+    fetch(countriesNameURL)
+      .then(res => res.json())
+      .then(setCountriesName);
+    console.log(countriesName);
+    // auto rotation of the globe
     globeRef.current.controls().autoRotate = true;
     globeRef.current.controls().autoRotateSpeed = -0.2;
-    fetch('https://geolocation-db.com/json/')
+    fetch(geoLocationURL)
       .then(res => res.json())
       .then(data => {
         globeRef.current.pointOfView(
@@ -58,7 +66,8 @@ export default function World({ parentCallback }) {
 
   colorScale.domain([0, maxVal]);
 
-  const [newWidth, newHeight] = size;
+  const [newWidth, newHeight] = size; // adapter le globe à la taille de l'écran
+  let flagScr; // lien vers l'image du drapeau d'un pays
 
   return (
     <Globe
@@ -77,7 +86,14 @@ export default function World({ parentCallback }) {
       }
       polygonSideColor={() => 'rgba(0, 100, 0, 0.15)'}
       polygonStrokeColor={() => '#111'}
-      polygonLabel={({ properties: d }) => `<b>${d.ADMIN}</b> <br />`}
+      polygonLabel={({ properties: d }) => {
+        flagScr = `${countrieFlagURL}${d.ISO_A3.toLowerCase()}.svg`;
+        console.log(flagScr);
+        return `<div">
+                  <b>${d.ADMIN}</b>
+                  <img src="${flagScr}" alt="Flag" class="h-full w-60 object-cover" />
+                </div>`;
+      }}
       onPolygonHover={setHoverD}
       polygonsTransitionDuration={300}
       onPolygonClick={(d, e) => {
@@ -92,7 +108,7 @@ export default function World({ parentCallback }) {
             2500
           );
         } catch (err) {
-          console.log(err); // TypeError
+          console.log("[Err] Can't travel to here"); // TypeError
         }
 
         parentCallback(d.properties.ADMIN);
