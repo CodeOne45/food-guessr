@@ -88,7 +88,6 @@ export default function World({ parentCallback }) {
       polygonStrokeColor={() => '#111'}
       polygonLabel={({ properties: d }) => {
         flagScr = `${countrieFlagURL}${d.ISO_A3.toLowerCase()}.svg`;
-        console.log(flagScr);
         return `<div class="p-1 w-60 bg-gray-500">
                   <b>${d.ADMIN}</b>
                   <img src="${flagScr}" alt="Flag" />
@@ -102,7 +101,6 @@ export default function World({ parentCallback }) {
           clickLocation = countriesName.find(
             item => item.alpha3Code === d.ISO_A3
           ).latlng;
-          console.log(clickLocation);
           // Se déplace à l'endroit indiqué par la souris
           // if (!clickLocation) {
           //   clickLocation = [
