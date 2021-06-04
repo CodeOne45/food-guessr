@@ -26,7 +26,14 @@ export default function World({ parentCallback }) {
   useEffect(() => {
     globeRef.current.controls().autoRotate = true;
     globeRef.current.controls().autoRotateSpeed = -0.2;
-    globeRef.current.pointOfView({ altitude: 3 }, 5000);
+    fetch('https://geolocation-db.com/json/')
+      .then(res => res.json())
+      .then(data => {
+        globeRef.current.pointOfView(
+          { lat: data.latitude, lng: data.longitude, altitude: 3 },
+          5000
+        );
+      });
   }, []);
 
   // responsive design for the globe
@@ -80,7 +87,7 @@ export default function World({ parentCallback }) {
             {
               lat: globeRef.current.toGlobeCoords(e.x, e.y).lat,
               lng: globeRef.current.toGlobeCoords(e.x, e.y).lng,
-              altitude: 1,
+              altitude: 2,
             },
             2500
           );
