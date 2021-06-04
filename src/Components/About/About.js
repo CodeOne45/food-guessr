@@ -12,7 +12,7 @@ export default function About() {
     aboutTween.current = gsap.timeline({
       scrollTrigger: {
         trigger: '#about',
-        start: 'top center',
+        start: 'top bottom',
         end: 'top top',
         toggleActions: 'play none none reset',
       },

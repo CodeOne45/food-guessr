@@ -25,7 +25,7 @@ export default function LogoClouds() {
     logoCloudsTween.current = gsap.timeline({
       scrollTrigger: {
         trigger: '#logo-clouds',
-        start: 'top center',
+        start: 'top bottom',
         end: 'top top',
         toggleActions: 'play none none reset',
       },
