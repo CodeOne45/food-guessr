@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { XIcon } from '@heroicons/react/outline';
 import AnimatedClouds from 'Components/AnimatedClouds/AnimatedClouds';
 import Answer from 'Components/Answer/Answer';
 import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
@@ -37,8 +38,10 @@ export default function Quiz() {
   return (
     <div className="flex flex-row h-screen">
       <div className="absolute z-10 w-1/5 h-screen flex flex-col pt-5 pb-4 bg-white">
-        <div className="flex justify-center flex-shrink-0 px-4">
+        <div className="flex justify-between flex-shrink-0 px-4 items-center">
+          <div className="h-8 w-auto" />
           <BurgerLogo />
+          <XIcon className="h-8 w-auto" aria-hidden="true" />
         </div>
         <div className="mt-5 px-6 flex-grow">
           <nav className="flex flex-col px-2" aria-label="Sidebar">
