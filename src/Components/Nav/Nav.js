@@ -2,8 +2,8 @@ import React, { Fragment, useEffect } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import { gsap } from 'gsap';
+import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
 import NavLink from 'Components/UI/NavLink/NavLink';
-import hamburger from 'Assets/img/hamburger.svg';
 
 const navigation = [
   { name: 'Accueil', href: '#hero' },
@@ -47,14 +47,7 @@ export default function Nav() {
                   <div className="flex items-center justify-between w-full md:w-auto">
                     <div className="h-6 w-6" />
                     <a href="#hero">
-                      <img
-                        src={hamburger}
-                        alt="Hamburger"
-                        className="h-8 w-auto sm:h-10"
-                        ref={burger}
-                        onMouseEnter={() => burgerTween.current.play()}
-                        onMouseLeave={() => burgerTween.current.reverse()}
-                      />
+                      <BurgerLogo />
                     </a>
                     <div className="-mr-2 flex items-center md:hidden">
                       <Popover.Button className="bg-yellow-100 rounded-md p-2 inline-flex items-center justify-center text-yellow-600 hover:bg-yellow-600 hover:text-white focus:outline-none">
@@ -95,14 +88,7 @@ export default function Nav() {
                   <div className="px-5 pt-4 flex items-center justify-between">
                     <div className="h-6 w-6" />
                     <div>
-                      <img
-                        src={hamburger}
-                        alt="Hamburger"
-                        className="h-8 w-auto"
-                        ref={burger}
-                        onMouseEnter={() => burgerTween.current.play()}
-                        onMouseLeave={() => burgerTween.current.reverse()}
-                      />
+                      <BurgerLogo />
                     </div>
                     <div className="-mr-2">
                       <Popover.Button className="hover:bg-yellow-600 hover:text-white rounded-md p-2 inline-flex items-center justify-center text-gray-700 focus:outline-none">

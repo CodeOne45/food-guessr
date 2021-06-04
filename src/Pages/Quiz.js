@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
-import World from 'Components/World/World';
+import AnimatedClouds from 'Components/AnimatedClouds/AnimatedClouds';
+import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
 import Question from 'Components/Question/Question';
-import './Quiz.css';
-import hamburger from 'Assets/img/hamburger.svg';
+import World from 'Components/World/World';
 
 export default function Quiz() {
   const [goodAnswer, setGoodAnswer] = useState('');
@@ -13,9 +13,6 @@ export default function Quiz() {
 
   const burger = React.createRef();
   const burgerTween = React.createRef();
-  const cloudsFirstLayer = React.createRef();
-  const cloudsSecondLayer = React.createRef();
-  const overlay = React.createRef();
 
   useEffect(() => {
     burgerTween.current = gsap.to(burger.current, {
@@ -23,10 +20,6 @@ export default function Quiz() {
       duration: 1,
       paused: true,
     });
-
-    gsap.to(cloudsFirstLayer.current, { x: '-100%', delay: 1, duration: 1 });
-    gsap.to(cloudsSecondLayer.current, { x: '100%', delay: 1, duration: 1 });
-    gsap.to(overlay.current, { y: '-100%', delay: 2 });
   });
   const callbackGoodAnswer = answer => {
     setGoodAnswer(answer);
@@ -55,14 +48,7 @@ export default function Quiz() {
     <div className="flex flex-row h-screen">
       <div className="absolute z-10 w-1/5 h-screen flex flex-col pt-5 pb-4 bg-white">
         <div className="flex justify-center flex-shrink-0 px-4">
-          <img
-            className="h-10 w-auto"
-            src={hamburger}
-            alt="Hamburger"
-            ref={burger}
-            onMouseEnter={() => burgerTween.current.play()}
-            onMouseLeave={() => burgerTween.current.reverse()}
-          />
+          <BurgerLogo />
         </div>
         <div className="mt-5 px-6 flex-grow">
           <nav className="flex flex-col px-2" aria-label="Sidebar">
@@ -86,10 +72,7 @@ export default function Quiz() {
       <div className="flex-1">
         <World parentCallback={callbackPlayerAnswer} />
       </div>
-      <div className="overlay" ref={overlay}>
-        <div className="layer layer-1" ref={cloudsFirstLayer} />
-        <div className="layer layer-2" ref={cloudsSecondLayer} />
-      </div>
+      <AnimatedClouds />
     </div>
   );
 }
