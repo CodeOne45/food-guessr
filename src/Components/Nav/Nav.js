@@ -6,7 +6,7 @@ import NavLink from 'Components/UI/NavLink/NavLink';
 import hamburger from 'Assets/img/hamburger.svg';
 
 const navigation = [
-  { name: 'Accueil', href: '#' },
+  { name: 'Accueil', href: '#hero' },
   { name: 'À propos', href: '#about' },
   { name: "L'équipe", href: '#team' },
 ];
@@ -46,7 +46,7 @@ export default function Nav() {
                 <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                   <div className="flex items-center justify-between w-full md:w-auto">
                     <div className="h-6 w-6" />
-                    <a href="/#">
+                    <a href="#hero">
                       <img
                         src={hamburger}
                         alt="Hamburger"

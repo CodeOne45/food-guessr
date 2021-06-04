@@ -68,7 +68,7 @@ export default function Quiz() {
           <nav className="flex flex-col px-2" aria-label="Sidebar">
             <Question parentCallback={callbackGoodAnswer} />
 
-            <div className="text-xl mt-6 space-y-3">
+            <div className="md:text-xl mt-6 space-y-3">
               <p>
                 <span className="font-bold text-gray-900">Pays choisis : </span>
                 <span className="font-medium text-yellow-600">

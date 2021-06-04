@@ -30,7 +30,7 @@ export default function Question({ parentCallback }) {
     <div id="meal-question" className="w-full">
       <div style={meal.strMeal ? { display: 'block' } : { display: 'none' }}>
         <div className="space-y-3 flex flex-col items-center ">
-          <div className="text-xl">
+          <div className="md:text-xl">
             <p>
               <span className="font-bold text-gray-900">Name : </span>
               <span className="font-medium text-yellow-600">
