@@ -7,9 +7,10 @@ import React, {
 } from 'react';
 import Globe from 'react-globe.gl';
 import * as d3 from 'd3';
+import PropTypes from 'prop-types';
 
 // eslint-disable-next-line react/prop-types
-export default function World({ parentCallback }) {
+export default function World({ parentCallback, openSideBar }) {
   const globeRef = useRef();
   const [countries, setCountries] = useState({ features: [] });
   const [hoverD, setHoverD] = useState();
@@ -84,6 +85,7 @@ export default function World({ parentCallback }) {
               },
               2500
             );
+            openSideBar();
           } catch (err) {
             console.log(err); // TypeError
           }
@@ -94,6 +96,11 @@ export default function World({ parentCallback }) {
     </div>
   );
 }
+
+World.propTypes = {
+  parentCallback: PropTypes.func.isRequired,
+  openSideBar: PropTypes.func.isRequired,
+};
 
 // GDP: <i>${d.GDP_MD_EST}</i> M$<br/>
 // Population: <i>${d.POP_EST}</i>
