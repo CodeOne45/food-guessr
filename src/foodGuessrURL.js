@@ -1,4 +1,5 @@
 const foodGuessrURL = {
+  home: '/',
   quiz: '/food-guessr',
 };
 

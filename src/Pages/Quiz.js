@@ -4,6 +4,8 @@ import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import AnimatedClouds from 'Components/AnimatedClouds/AnimatedClouds';
 import Answer from 'Components/Answer/Answer';
 import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
+import foodGuessrURL from 'foodGuessrURL';
+import Link from 'Components/UI/Link/Link';
 import Question from 'Components/Question/Question';
 import World from 'Components/World/World';
 
@@ -59,7 +61,7 @@ export default function Quiz() {
     <div className="flex flex-row h-screen">
       <div
         ref={sideBar}
-        className="absolute z-20 w-3/5 md:w-1/5 h-screen flex flex-col pt-5 pb-4 bg-white"
+        className="absolute z-20 w-3/5 md:w-1/5 h-screen flex flex-col pt-5 bg-white"
       >
         <div className="flex justify-between flex-shrink-0 px-4 items-center">
           <div className="h-8 w-auto" />
@@ -80,6 +82,11 @@ export default function Quiz() {
             <Answer playerAnswer={playerAnswer} result={result} />
           </nav>
         </div>
+        <Link
+          content="Retourner à l'accueil"
+          href={foodGuessrURL.home}
+          type="light"
+        />
       </div>
       <button
         type="button"
