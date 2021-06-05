@@ -89,7 +89,10 @@ export default function Quiz() {
         <MenuIcon className="h-6 w-auto" aria-hidden="true" />
       </button>
       <div className="flex-1">
-        <World parentCallback={callbackPlayerAnswer} />
+        <World
+          parentCallback={callbackPlayerAnswer}
+          openSideBar={() => openSideBarTween.current.restart()}
+        />
       </div>
       <AnimatedClouds />
     </div>
