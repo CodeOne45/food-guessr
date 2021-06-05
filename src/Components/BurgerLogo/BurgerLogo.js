@@ -4,7 +4,7 @@ import hamburger from 'Assets/img/hamburger.svg';
 
 export default function BurgerLogo() {
   const burger = React.createRef();
-  const burgerTween = React.createRef();
+  const burgerTween = React.useRef();
 
   useEffect(() => {
     burgerTween.current = gsap.to(burger.current, {
