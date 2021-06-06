@@ -9,14 +9,14 @@ export default function Question({ meal, play }) {
           <div className="md:text-xl">
             <p>
               <span className="font-bold text-gray-900">Name : </span>
-              <span className="font-medium text-yellow-600">
+              <span className="md:font-normal text-yellow-600">
                 {meal.strMeal}
               </span>
             </p>
             {/* Area à retirer */}
             <p>
               <span className="font-bold text-gray-900">Area : </span>
-              <span className="font-medium hover:text-yellow-600 bg-black hover:bg-white">
+              <span className="md:font-normal hover:text-yellow-600 bg-black hover:bg-white">
                 {meal.strArea}
               </span>
             </p>
@@ -38,7 +38,7 @@ export default function Question({ meal, play }) {
         onClick={() => {
           play();
         }}
-        className="font-medium bg-yellow-600 hover:bg-yellow-700 mt-3 px-7 py-3 rounded text-white w-full"
+        className="md:font-normal bg-yellow-600 hover:bg-yellow-700 mt-3 px-7 py-3 rounded text-white w-full"
       >
         J&#39;ai faim !
       </button>
