@@ -39,7 +39,7 @@ export default function Quiz() {
 
   const reset = () => {
     setPlayerAnswer('');
-    setPlayerAnswer('');
+    setResult('');
   };
 
   const play = () => {
