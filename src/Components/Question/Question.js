@@ -6,17 +6,17 @@ export default function Question({ meal, play }) {
     <div id="meal-question" className="w-full">
       <div style={meal.strMeal ? { display: 'block' } : { display: 'none' }}>
         <div className="space-y-3 flex flex-col items-center ">
-          <div className="md:text-xl">
+          <div className="md:text-lg">
             <p>
               <span className="font-bold text-gray-900">Name : </span>
-              <span className="md:font-normal text-yellow-600">
+              <span className="font-medium text-yellow-600">
                 {meal.strMeal}
               </span>
             </p>
             {/* Area à retirer */}
             <p>
               <span className="font-bold text-gray-900">Area : </span>
-              <span className="md:font-normal hover:text-yellow-600 bg-black hover:bg-white">
+              <span className="font-medium hover:text-yellow-600 bg-black hover:bg-white">
                 {meal.strArea}
               </span>
             </p>
@@ -38,7 +38,7 @@ export default function Question({ meal, play }) {
         onClick={() => {
           play();
         }}
-        className="md:font-normal bg-yellow-600 hover:bg-yellow-700 mt-3 px-7 py-3 rounded text-white w-full"
+        className="font-medium bg-yellow-600 hover:bg-yellow-700 mt-3 px-7 py-3 rounded text-white w-full"
       >
         J&#39;ai faim !
       </button>
