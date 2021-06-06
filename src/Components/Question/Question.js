@@ -1,31 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Question({ parentCallback }) {
-  const [meal, setMeal] = useState({});
-
-  const randomMealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
-  // const randomMealAPI = 'https://api-food-guessr.herokuapp.com/meals/random';
-
-  const play = () => {
-    fetch(randomMealAPI)
-      .then(res => res.json())
-      .then(
-        data => {
-          try {
-            setMeal(data.meals[0]);
-            console.log(data.meals[0]); // TODO a retirer
-            parentCallback(data.meals[0].strArea);
-          } catch (err) {
-            console.log(err); // TypeError
-          }
-        },
-        error => {
-          console.log(error); // SyntaxError
-        }
-      );
-  };
-
+export default function Question({ meal, play }) {
   return (
     <div id="meal-question" className="w-full">
       <div style={meal.strMeal ? { display: 'block' } : { display: 'none' }}>
@@ -37,9 +13,10 @@ export default function Question({ parentCallback }) {
                 {meal.strMeal}
               </span>
             </p>
+            {/* Area à retirer */}
             <p>
               <span className="font-bold text-gray-900">Area : </span>
-              <span className="font-medium text-yellow-600">
+              <span className="font-medium hover:text-yellow-600 bg-black hover:bg-white">
                 {meal.strArea}
               </span>
             </p>
@@ -70,5 +47,6 @@ export default function Question({ parentCallback }) {
 }
 
 Question.propTypes = {
-  parentCallback: PropTypes.string.isRequired,
+  meal: PropTypes.shape.isRequired,
+  play: PropTypes.func.isRequired,
 };

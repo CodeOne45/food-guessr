@@ -10,10 +10,13 @@ import Question from 'Components/Question/Question';
 import World from 'Components/World/World';
 
 export default function Quiz() {
-  const [goodAnswer, setGoodAnswer] = useState('');
+  const [meal, setMeal] = useState({});
   const [playerAnswer, setPlayerAnswer] = useState('');
   const [result, setResult] = useState('');
-  const countriesAPI = 'https://restcountries.eu/rest/v2/name/';
+  const [score, setScore] = useState(0);
+  const countriesAPI = 'https://restcountries.eu/rest/v2/alpha?codes=';
+  const randomMealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
+  // const randomCustomMealAPI = 'https://api-food-guessr.herokuapp.com/meals/random';
 
   const closeSideBarTween = React.useRef();
   const openSideBarTween = React.useRef();
@@ -32,29 +35,55 @@ export default function Quiz() {
       duration: 1,
       paused: true,
     });
-  });
+  }, []);
 
-  const callbackGoodAnswer = answer => {
-    setGoodAnswer(answer);
+  const reset = () => {
+    setPlayerAnswer('');
+    setPlayerAnswer('');
   };
 
-  const checkAnswer = pAnswer => {
-    fetch(countriesAPI + pAnswer)
+  const play = () => {
+    reset();
+    fetch(randomMealAPI)
       .then(res => res.json())
       .then(
         data => {
-          if (data[0].demonym === goodAnswer) setResult('OK');
-          else setResult('Non OK');
+          try {
+            setMeal(data.meals[0]);
+            // console.log(data.meals[0]); // TODO a retirer
+          } catch (err) {
+            console.log(err); // TypeError
+          }
         },
         error => {
-          console.log(error);
+          console.log(error); // SyntaxError
         }
       );
   };
 
-  const callbackPlayerAnswer = pAnswer => {
-    setPlayerAnswer(pAnswer);
-    checkAnswer(pAnswer);
+  const checkAnswer = pAnswerISOA3 => {
+    fetch(countriesAPI + pAnswerISOA3)
+      .then(res => res.json())
+      .then(
+        data => {
+          try {
+            if (data[0].demonym === meal.strArea) {
+              setResult('OK'); // TODO A CHANGER
+              setScore(score + 100);
+            } else setResult('Non OK');
+          } catch (err) {
+            console.log(`[Err] No data on the selected country : ${err}`);
+          }
+        },
+        error => {
+          console.log(`[Err] Checking answer fail : ${error}`);
+        }
+      );
+  };
+
+  const callbackPlayerAnswer = (pAnswerName, pAnswerISOA3) => {
+    setPlayerAnswer(pAnswerName);
+    checkAnswer(pAnswerISOA3);
   };
 
   return (
@@ -78,7 +107,7 @@ export default function Quiz() {
 
         <div className="mt-5 px-6 flex-grow">
           <nav className="flex flex-col px-2" aria-label="Sidebar">
-            <Question parentCallback={callbackGoodAnswer} />
+            <Question meal={meal} play={play} />
             <Answer playerAnswer={playerAnswer} result={result} />
           </nav>
         </div>
