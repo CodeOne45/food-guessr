@@ -7,9 +7,10 @@ import React, {
 } from 'react';
 import Globe from 'react-globe.gl';
 import * as d3 from 'd3';
+import PropTypes from 'prop-types';
 
 // eslint-disable-next-line react/prop-types
-export default function World({ parentCallback }) {
+export default function World({ parentCallback, openSideBar }) {
   const globeRef = useRef();
   const [countries, setCountries] = useState({ features: [] });
   const [countriesName, setCountriesName] = useState([]);
@@ -126,3 +127,8 @@ export default function World({ parentCallback }) {
     />
   );
 }
+
+World.propTypes = {
+  parentCallback: PropTypes.func.isRequired,
+  openSideBar: PropTypes.func.isRequired,
+};

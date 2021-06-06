@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { gsap } from 'gsap';
+import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import AnimatedClouds from 'Components/AnimatedClouds/AnimatedClouds';
+import Answer from 'Components/Answer/Answer';
+import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
+import foodGuessrURL from 'foodGuessrURL';
+import Link from 'Components/UI/Link/Link';
 import Question from 'Components/Question/Question';
 import World from 'Components/World/World';
-import './Quiz.css';
 
 export default function Quiz() {
   const [meal, setMeal] = useState({});
@@ -13,15 +18,24 @@ export default function Quiz() {
   const randomMealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
   // const randomCustomMealAPI = 'https://api-food-guessr.herokuapp.com/meals/random';
 
-  const cloudsFirstLayer = React.createRef();
-  const cloudsSecondLayer = React.createRef();
-  const overlay = React.createRef();
+  const closeSideBarTween = React.useRef();
+  const openSideBarTween = React.useRef();
+  const sideBar = React.createRef();
 
   useEffect(() => {
-    gsap.to(cloudsFirstLayer.current, { x: '-100%', delay: 1, duration: 1 });
-    gsap.to(cloudsSecondLayer.current, { x: '100%', delay: 1, duration: 1 });
-    gsap.to(overlay.current, { y: '-100%', delay: 2 });
-  }, []);
+    closeSideBarTween.current = gsap.to(sideBar.current, {
+      x: '-100%',
+      ease: 'back.in(0.5)',
+      duration: 1,
+      paused: true,
+    });
+    openSideBarTween.current = gsap.to(sideBar.current, {
+      x: 0,
+      ease: 'back.out(0.5)',
+      duration: 1,
+      paused: true,
+    });
+  });
 
   const reset = () => {
     console.log('');
@@ -72,30 +86,50 @@ export default function Quiz() {
   };
 
   return (
-    <section>
-      <div id="quiz">
-        <div
-          id="quiz-modal"
-          className="m-1 p-1 absolute bg-white top-0 w-60 z-10 rounded" // TODO rendre responsive
-        >
-          <Question meal={meal} play={play} />
-          <p>Pays choisis : {playerAnswer}</p>
-          <p>Result : {result}</p>
+    <div className="flex flex-row h-screen">
+      <div
+        ref={sideBar}
+        className="absolute z-20 w-3/5 md:w-1/5 h-screen flex flex-col pt-5 bg-white"
+      >
+        <div className="flex justify-between flex-shrink-0 px-4 items-center">
+          <div className="h-8 w-auto" />
+          <BurgerLogo />
+
+          <button
+            type="button"
+            className="bg-yellow-100 rounded-md p-2 inline-flex items-center justify-center text-yellow-600 hover:bg-yellow-600 hover:text-white focus:outline-none"
+            onClick={() => closeSideBarTween.current.restart()}
+          >
+            <XIcon className="h-6 w-auto" aria-hidden="true" />
+          </button>
         </div>
-        <div
-          id="quiz-score"
-          className="m-1 p-1 absolute bg-white right-0 w-60 z-10 rounded" // TODO rendre responsive
-        >
-          <p>Score : {score}</p>
+
+        <div className="mt-5 px-6 flex-grow">
+          <nav className="flex flex-col px-2" aria-label="Sidebar">
+            <Question meal={meal} play={play} />
+            <Answer playerAnswer={playerAnswer} result={result} />
+          </nav>
         </div>
+        <Link
+          content="Retourner à l'accueil"
+          href={foodGuessrURL.home}
+          type="light"
+        />
       </div>
-      <div id="world-3d">
-        <World parentCallback={callbackPlayerAnswer} />
+      <button
+        type="button"
+        onClick={() => openSideBarTween.current.restart()}
+        className="absolute z-10 mt-4 ml-4 bg-yellow-100 rounded-md p-2 inline-flex items-center justify-center text-yellow-600 hover:bg-yellow-600 hover:text-white focus:outline-none"
+      >
+        <MenuIcon className="h-6 w-auto" aria-hidden="true" />
+      </button>
+      <div className="flex-1">
+        <World
+          parentCallback={callbackPlayerAnswer}
+          openSideBar={() => openSideBarTween.current.restart()}
+        />
       </div>
-      <div className="overlay" ref={overlay}>
-        <div className="layer layer-1" ref={cloudsFirstLayer} />
-        <div className="layer layer-2" ref={cloudsSecondLayer} />
-      </div>
-    </section>
+      <AnimatedClouds />
+    </div>
   );
 }

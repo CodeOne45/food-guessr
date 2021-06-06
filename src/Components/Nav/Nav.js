@@ -1,28 +1,16 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
-import { gsap } from 'gsap';
+import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
 import NavLink from 'Components/UI/NavLink/NavLink';
-import hamburger from 'Assets/img/hamburger.svg';
 
 const navigation = [
-  { name: 'Accueil', href: '#' },
+  { name: 'Accueil', href: '#hero' },
   { name: 'À propos', href: '#about' },
   { name: "L'équipe", href: '#team' },
 ];
 
 export default function Nav() {
-  const burger = React.createRef();
-  const burgerTween = React.createRef();
-
-  useEffect(() => {
-    burgerTween.current = gsap.to(burger.current, {
-      rotation: 360,
-      duration: 1,
-      paused: true,
-    });
-  });
-
   return (
     <div>
       <svg
@@ -46,15 +34,8 @@ export default function Nav() {
                 <div className="flex items-center flex-grow flex-shrink-0 lg:flex-grow-0">
                   <div className="flex items-center justify-between w-full md:w-auto">
                     <div className="h-6 w-6" />
-                    <a href="/#">
-                      <img
-                        src={hamburger}
-                        alt="Hamburger"
-                        className="h-8 w-auto sm:h-10"
-                        ref={burger}
-                        onMouseEnter={() => burgerTween.current.play()}
-                        onMouseLeave={() => burgerTween.current.reverse()}
-                      />
+                    <a href="#hero">
+                      <BurgerLogo />
                     </a>
                     <div className="-mr-2 flex items-center md:hidden">
                       <Popover.Button className="bg-yellow-100 rounded-md p-2 inline-flex items-center justify-center text-yellow-600 hover:bg-yellow-600 hover:text-white focus:outline-none">
@@ -95,14 +76,7 @@ export default function Nav() {
                   <div className="px-5 pt-4 flex items-center justify-between">
                     <div className="h-6 w-6" />
                     <div>
-                      <img
-                        src={hamburger}
-                        alt="Hamburger"
-                        className="h-8 w-auto"
-                        ref={burger}
-                        onMouseEnter={() => burgerTween.current.play()}
-                        onMouseLeave={() => burgerTween.current.reverse()}
-                      />
+                      <BurgerLogo />
                     </div>
                     <div className="-mr-2">
                       <Popover.Button className="hover:bg-yellow-600 hover:text-white rounded-md p-2 inline-flex items-center justify-center text-gray-700 focus:outline-none">
