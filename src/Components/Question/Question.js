@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 export default function Question({ meal, play }) {
@@ -13,9 +13,10 @@ export default function Question({ meal, play }) {
                 {meal.strMeal}
               </span>
             </p>
+            {/* Area à retirer */}
             <p>
               <span className="font-bold text-gray-900">Area : </span>
-              <span className="font-medium text-yellow-600">
+              <span className="font-medium hover:text-yellow-600 bg-black hover:bg-white">
                 {meal.strArea}
               </span>
             </p>
@@ -41,23 +42,11 @@ export default function Question({ meal, play }) {
       >
         J&#39;ai faim !
       </button>
-      <div style={meal.strMeal ? { display: 'block' } : { display: 'none' }}>
-        <p>Name : {meal.strMeal}</p>
-        {/* Area a retirer */}
-        <p>
-          Area : <span className="bg-black hover:bg-white">{meal.strArea}</span>
-        </p>
-        <img // TODO: img peut être factorisé en atome
-          id="quiz-img"
-          src={meal.strMealThumb} // si meal est null, mettre une img d'erreur
-          alt="meal"
-          className="h-full w-60 object-cover"
-        />
-      </div>
     </div>
   );
 }
 
 Question.propTypes = {
-  parentCallback: PropTypes.string.isRequired,
+  meal: PropTypes.shape.isRequired,
+  play: PropTypes.func.isRequired,
 };

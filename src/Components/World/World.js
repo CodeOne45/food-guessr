@@ -9,7 +9,6 @@ import Globe from 'react-globe.gl';
 import * as d3 from 'd3';
 import PropTypes from 'prop-types';
 
-// eslint-disable-next-line react/prop-types
 export default function World({ parentCallback, openSideBar }) {
   const globeRef = useRef();
   const [countries, setCountries] = useState({ features: [] });
@@ -118,6 +117,7 @@ export default function World({ parentCallback, openSideBar }) {
             },
             2500
           );
+          openSideBar();
         } catch (err) {
           console.log(`[Err] Can't travel to here : ${err}`); // TypeError
         }

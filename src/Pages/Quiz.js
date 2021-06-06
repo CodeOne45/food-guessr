@@ -35,10 +35,11 @@ export default function Quiz() {
       duration: 1,
       paused: true,
     });
-  });
+  }, []);
 
   const reset = () => {
-    console.log('');
+    setPlayerAnswer('');
+    setPlayerAnswer('');
   };
 
   const play = () => {
@@ -49,7 +50,7 @@ export default function Quiz() {
         data => {
           try {
             setMeal(data.meals[0]);
-            console.log(data.meals[0]); // TODO a retirer
+            // console.log(data.meals[0]); // TODO a retirer
           } catch (err) {
             console.log(err); // TypeError
           }
