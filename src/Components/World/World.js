@@ -9,7 +9,7 @@ import Globe from 'react-globe.gl';
 import * as d3 from 'd3';
 import PropTypes from 'prop-types';
 
-export default function World({ parentCallback, openSideBar }) {
+export default function World({ parentCallback }) {
   const globeRef = useRef();
   const [countries, setCountries] = useState({ features: [] });
   const [countriesName, setCountriesName] = useState([]);
@@ -88,8 +88,8 @@ export default function World({ parentCallback, openSideBar }) {
       polygonStrokeColor={() => '#111'}
       polygonLabel={({ properties: d }) => {
         flagScr = `${countrieFlagURL}${d.ISO_A3.toLowerCase()}.svg`;
-        return `<div class="p-1 w-20 h-auto bg-gray-500">
-                  <b>${d.ADMIN}</b>
+        return `<div class="p-1 w-28 h-auto bg-gray-500">
+                  <b class="text-sm">${d.ADMIN}</b>
                   <img src="${flagScr}" alt="Flag" />
                 </div>`;
       }}
@@ -117,7 +117,6 @@ export default function World({ parentCallback, openSideBar }) {
             },
             2500
           );
-          openSideBar();
         } catch (err) {
           console.log(`[Err] Can't travel to here : ${err}`); // TypeError
         }
@@ -130,5 +129,4 @@ export default function World({ parentCallback, openSideBar }) {
 
 World.propTypes = {
   parentCallback: PropTypes.func.isRequired,
-  openSideBar: PropTypes.func.isRequired,
 };
