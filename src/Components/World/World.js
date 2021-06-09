@@ -45,7 +45,6 @@ export default function World({
   }, []);
 
   useEffect(() => {
-    console.log(clickLocation);
     globeRef.current.pointOfView(
       {
         lat: clickLocation.lat,
@@ -54,7 +53,6 @@ export default function World({
       },
       2500
     );
-    console.log(goodCountry);
     if (goodCountry && goodCountry.latlng) {
       setArcData([
         {
@@ -141,7 +139,7 @@ export default function World({
       arcDashLength={0.95}
       arcDashGap={0.5}
       arcDashAnimateTime={2000}
-      arcAltitude={0.5}
+      arcAltitude={0.8}
       arcStroke={1}
     />
   );
