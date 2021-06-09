@@ -9,14 +9,19 @@ import Globe from 'react-globe.gl';
 import * as d3 from 'd3';
 import PropTypes from 'prop-types';
 
-export default function World({ parentCallback, openSideBar }) {
+export default function World({
+  parentCallback,
+  openSideBar,
+  countriesAPI,
+  goodCountry,
+}) {
   const globeRef = useRef();
   const [countries, setCountries] = useState({ features: [] });
-  const [countriesName, setCountriesName] = useState([]);
   const [hoverD, setHoverD] = useState();
   const [size, setSize] = useState([0, 0]);
+  const [clickLocation, setClickLocation] = useState({ lat: 0, lng: 0 }); // les coords du pays clické
+  const [arcData, setArcData] = useState([]);
   const countriesDataURL = './ne_110m_admin_0_countries.geojson';
-  const countriesNameURL = './restcountries_all.json';
   const geoLocationURL = 'https://geolocation-db.com/json/';
   const countrieFlagURL = 'https://restcountries.eu/data/';
 
@@ -26,10 +31,6 @@ export default function World({ parentCallback, openSideBar }) {
     fetch(countriesDataURL)
       .then(res => res.json())
       .then(setCountries);
-    // load countries name data (src: https://restcountries.eu/)
-    fetch(countriesNameURL)
-      .then(res => res.json())
-      .then(setCountriesName);
     // auto rotation of the globe
     globeRef.current.controls().autoRotate = true;
     globeRef.current.controls().autoRotateSpeed = -0.2;
@@ -42,6 +43,33 @@ export default function World({ parentCallback, openSideBar }) {
         );
       });
   }, []);
+
+  useEffect(() => {
+    console.log(clickLocation);
+    globeRef.current.pointOfView(
+      {
+        lat: clickLocation.lat,
+        lng: clickLocation.lng,
+        altitude: 2,
+      },
+      2500
+    );
+    console.log(goodCountry);
+    if (goodCountry && goodCountry.latlng) {
+      setArcData([
+        {
+          startLat: clickLocation.lat,
+          startLng: clickLocation.lng,
+          endLat: goodCountry.latlng[0], // -34.0
+          endLng: goodCountry.latlng[1], // -64.0
+          color: [
+            ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)],
+            ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)],
+          ],
+        },
+      ]);
+    }
+  }, [clickLocation]);
 
   // responsive design for the globe
   useLayoutEffect(() => {
@@ -67,7 +95,7 @@ export default function World({ parentCallback, openSideBar }) {
 
   const [newWidth, newHeight] = size; // adapter le globe à la taille de l'écran
   let flagScr; // lien vers l'image du drapeau d'un pays
-  let clickLocation; // les coords du pays clické
+  let tmpLocation;
 
   return (
     <Globe
@@ -98,32 +126,23 @@ export default function World({ parentCallback, openSideBar }) {
       onPolygonClick={({ properties: d }) => {
         try {
           // se déplace au coord enregistré dans les données
-          clickLocation = countriesName.find(
-            item => item.alpha3Code === d.ISO_A3
-          ).latlng;
-          // Se déplace à l'endroit indiqué par la souris
-          // if (!clickLocation) {
-          //   clickLocation = [
-          //     globeRef.current.toGlobeCoords(e.x, e.y).lat,
-          //     globeRef.current.toGlobeCoords(e.x, e.y).lng,
-          //   ];
-          // }
-          // TODO travel to clicked country (Not optimized)
-          globeRef.current.pointOfView(
-            {
-              lat: clickLocation[0],
-              lng: clickLocation[1],
-              altitude: 2,
-            },
-            2500
-          );
+          tmpLocation = countriesAPI.find(item => item.alpha3Code === d.ISO_A3)
+            .latlng;
+          setClickLocation({ lat: tmpLocation[0], lng: tmpLocation[1] });
           openSideBar();
         } catch (err) {
           console.log(`[Err] Can't travel to here : ${err}`); // TypeError
         }
 
-        parentCallback(d.ADMIN, d.ISO_A3.toLowerCase());
+        parentCallback(d.ADMIN, d.ISO_A3);
       }}
+      arcsData={arcData}
+      arcColor="color"
+      arcDashLength={0.95}
+      arcDashGap={0.5}
+      arcDashAnimateTime={2000}
+      arcAltitude={0.5}
+      arcStroke={1}
     />
   );
 }
@@ -131,4 +150,6 @@ export default function World({ parentCallback, openSideBar }) {
 World.propTypes = {
   parentCallback: PropTypes.func.isRequired,
   openSideBar: PropTypes.func.isRequired,
+  countriesAPI: PropTypes.shape.isRequired,
+  goodCountry: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
