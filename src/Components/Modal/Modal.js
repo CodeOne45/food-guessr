@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { CheckIcon } from '@heroicons/react/outline';
+import { CheckIcon, XIcon } from '@heroicons/react/outline';
 
 export default function Modal() {
   const [open, setOpen] = useState(true);
@@ -51,6 +51,9 @@ export default function Modal() {
                     aria-hidden="true"
                   />
                 </div>
+                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+                  <XIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
+                </div>
 
                 <div className="mt-3 text-center sm:mt-5">
                   <Dialog.Title
@@ -59,9 +62,21 @@ export default function Modal() {
                   >
                     Bravo ! Vous avez trouvé la bonne réponse
                   </Dialog.Title>
+
+                  <Dialog.Title
+                    as="h3"
+                    className="text-lg leading-6 font-medium text-red-600"
+                  >
+                    Mauvaise réponse !
+                  </Dialog.Title>
                   <div className="mt-2 text-sm font-medium">
                     <p>
                       Réponse : <span className="text-yellow-600">France</span>
+                    </p>
+                    <p>
+                      Vous étiez à{' '}
+                      <span className="text-yellow-600">200 km</span> de la
+                      réponse
                     </p>
                     <p>
                       Points obtenus :{' '}
