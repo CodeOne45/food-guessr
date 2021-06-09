@@ -6,7 +6,7 @@ export default function Question({ meal, play }) {
     <div id="meal-question" className="w-full">
       <div style={meal.strMeal ? { display: 'block' } : { display: 'none' }}>
         <div className="space-y-3 flex flex-col items-center ">
-          <div className="md:text-xl">
+          <div className="md:text-lg">
             <p>
               <span className="font-bold text-gray-900">Name : </span>
               <span className="font-medium text-yellow-600">

@@ -87,10 +87,10 @@ export default function Quiz() {
   };
 
   return (
-    <div className="flex flex-row h-screen">
+    <div className="flex flex-row h-full">
       <div
         ref={sideBar}
-        className="absolute z-20 w-3/5 md:w-1/5 h-screen flex flex-col pt-5 bg-white"
+        className="absolute z-20 w-3/5 md:w-1/5 h-full flex flex-col pt-5 bg-white"
       >
         <div className="flex justify-between flex-shrink-0 px-4 items-center">
           <div className="h-8 w-auto" />
