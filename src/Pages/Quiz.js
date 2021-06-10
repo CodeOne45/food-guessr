@@ -6,17 +6,18 @@ import Answer from 'Components/Answer/Answer';
 import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
 import foodGuessrURL from 'foodGuessrURL';
 import Link from 'Components/UI/Link/Link';
-// import Modal from 'Components/Modal/Modal';
+import Modal from 'Components/Modal/Modal';
 import Question from 'Components/Question/Question';
 import World from 'Components/World/World';
 
 export default function Quiz() {
   const [meal, setMeal] = useState({}); // data about the current meal
-  const [country, setCountry] = useState(); // data about the country of the current meal
+  const [country, setCountry] = useState({}); // data about the country of the current meal
   const [countriesAPI, setCountriesAPI] = useState([]); // data about all countries
   const [playerAnswer, setPlayerAnswer] = useState('');
   const [result, setResult] = useState('');
   const [score, setScore] = useState(0);
+  const [openModal, setOpenModal] = useState(true);
   const countriesNameURL = './restcountries_all.json';
   // const countriesAPIURL = 'https://restcountries.eu/rest/v2/alpha?codes=';
   const randomMealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
@@ -82,15 +83,20 @@ export default function Quiz() {
       if (pAnswerISOA3 === country.alpha3Code) {
         setResult('OK'); // TODO A CHANGER
         setScore(score + 100);
-      } else setResult('Non OK');
+        setOpenModal(true);
+      } else setResult(`Non OK --> ${score}`);
     } catch (err) {
       console.log(`[Err] No data on the selected country : ${err}`);
     }
   };
 
-  const callbackPlayerAnswer = (pAnswerName, pAnswerISOA3) => {
+  const checkPlayerAnswer = (pAnswerName, pAnswerISOA3) => {
     setPlayerAnswer(pAnswerName);
     checkAnswer(pAnswerISOA3);
+  };
+
+  const nextGame = () => {
+    setOpenModal(false);
   };
 
   return (
@@ -117,6 +123,7 @@ export default function Quiz() {
         <div className="mt-5 px-6 flex-grow">
           <nav className="flex flex-col px-2" aria-label="Sidebar">
             <Question meal={meal} play={play} />
+            <Answer playerAnswer={playerAnswer} result={result} />
           </nav>
         </div>
         {/* Go back home btn */}
@@ -137,14 +144,19 @@ export default function Quiz() {
       {/* World */}
       <div className="flex-1">
         <World
-          parentCallback={callbackPlayerAnswer}
+          parentCallback={checkPlayerAnswer}
           openSideBar={() => openSideBarTween.current.restart()}
           countriesAPI={countriesAPI}
           goodCountry={country}
         />
       </div>
-    {/* Result Modal */}
-      {/* <Modal /> */}
+      {/* Result Modal */}
+      <Modal
+        goodCountry={country}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        nextGame={nextGame}
+      />
       {/* Loading animation */}
       <AnimatedClouds />
     </div>

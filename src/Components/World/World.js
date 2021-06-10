@@ -188,5 +188,5 @@ World.propTypes = {
   parentCallback: PropTypes.func.isRequired,
   openSideBar: PropTypes.func.isRequired,
   countriesAPI: PropTypes.shape.isRequired,
-  goodCountry: PropTypes.arrayOf(PropTypes.string).isRequired,
+  goodCountry: PropTypes.shape.isRequired,
 };

@@ -1,18 +1,23 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { CheckIcon, XIcon } from '@heroicons/react/outline';
+import PropTypes from 'prop-types';
 
-export default function Modal() {
-  const [open, setOpen] = useState(true);
-
+export default function Modal({
+  goodCountry,
+  openModal,
+  setOpenModal,
+  nextGame,
+}) {
+  console.log(`Modal open = ${openModal}`);
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition.Root show={openModal} as={Fragment}>
       <Dialog
         as="div"
         static
         className="fixed z-30 inset-0 overflow-y-auto"
-        open={open}
-        onClose={setOpen}
+        open={openModal}
+        onClose={setOpenModal}
       >
         <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
           <Transition.Child
@@ -71,7 +76,10 @@ export default function Modal() {
                   </Dialog.Title>
                   <div className="mt-2 text-sm font-medium">
                     <p>
-                      Réponse : <span className="text-yellow-600">France</span>
+                      Réponse :{' '}
+                      <span className="text-yellow-600">
+                        {goodCountry ? goodCountry.name : 'unknow'}
+                      </span>
                     </p>
                     <p>
                       Vous étiez à{' '}
@@ -89,7 +97,7 @@ export default function Modal() {
                 <button
                   type="button"
                   className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-yellow-600 text-base font-medium text-white bg-yellow-600 hover:bg-white hover:border-yellow-600 hover:text-yellow-600 focus:outline-none"
-                  onClick={() => setOpen(false)}
+                  onClick={() => nextGame()}
                 >
                   Continuer
                 </button>
@@ -101,3 +109,10 @@ export default function Modal() {
     </Transition.Root>
   );
 }
+
+Modal.propTypes = {
+  goodCountry: PropTypes.shape.isRequired,
+  openModal: PropTypes.bool.isRequired,
+  setOpenModal: PropTypes.func.isRequired,
+  nextGame: PropTypes.func.isRequired,
+};
