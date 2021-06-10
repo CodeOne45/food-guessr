@@ -6,6 +6,7 @@ import Answer from 'Components/Answer/Answer';
 import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
 import foodGuessrURL from 'foodGuessrURL';
 import Link from 'Components/UI/Link/Link';
+// import Modal from 'Components/Modal/Modal';
 import Question from 'Components/Question/Question';
 import World from 'Components/World/World';
 
@@ -116,7 +117,6 @@ export default function Quiz() {
         <div className="mt-5 px-6 flex-grow">
           <nav className="flex flex-col px-2" aria-label="Sidebar">
             <Question meal={meal} play={play} />
-            <Answer playerAnswer={playerAnswer} result={result} />
           </nav>
         </div>
         {/* Go back home btn */}
@@ -143,6 +143,8 @@ export default function Quiz() {
           goodCountry={country}
         />
       </div>
+    {/* Result Modal */}
+      {/* <Modal /> */}
       {/* Loading animation */}
       <AnimatedClouds />
     </div>

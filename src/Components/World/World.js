@@ -153,8 +153,8 @@ export default function World({
       polygonStrokeColor={() => '#111'}
       polygonLabel={({ properties: d }) => {
         flagScr = `${countrieFlagURL}${d.ISO_A3.toLowerCase()}.svg`;
-        return `<div class="p-1 w-20 h-auto bg-gray-500">
-                  <b>${d.ADMIN}</b>
+        return `<div class="p-1 w-28 h-auto bg-gray-500">
+                  <b class="text-sm">${d.ADMIN}</b>
                   <img src="${flagScr}" alt="Flag" />
                 </div>`;
       }}
