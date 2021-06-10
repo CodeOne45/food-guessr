@@ -66,8 +66,47 @@ export default function World({
           ],
         },
       ]);
+      console.log(
+        // eslint-disable-next-line @typescript-eslint/no-use-before-define
+        haversine(
+          clickLocation.lat,
+          clickLocation.lng,
+          goodCountry.latlng[0],
+          goodCountry.latlng[1]
+        )
+      );
+    } else {
+      setArcData([]);
     }
   }, [clickLocation]);
+
+  /**
+   * Haversine formula to calculate the distance between 2 points on a sphere with their latitudes & longitudes.
+   * This is not the exact measurement because the formula assumes that the Earth is a perfect sphere when in fact it is an oblate spheroid.
+   * (Source : geeksforgeeks.org)
+   * @param {*} lat1 latitude of the first point
+   * @param {*} lon1 longitude of the first point
+   * @param {*} lat2 latitude of the second point
+   * @param {*} lon2 longitude of the second point
+   * @return the distante between 2 points
+   */
+  function haversine(lat1, lon1, lat2, lon2) {
+    // distance between latitudes & longitudes
+    const dLat = ((lat2 - lat1) * Math.PI) / 180.0;
+    const dLon = ((lon2 - lon1) * Math.PI) / 180.0;
+
+    // convert to radians
+    const lat1Bis = (lat1 * Math.PI) / 180.0;
+    const lat2Bis = (lat2 * Math.PI) / 180.0;
+
+    // apply formula
+    const a =
+      Math.sin(dLat / 2) ** 2 +
+      Math.sin(dLon / 2) ** 2 * Math.cos(lat1Bis) * Math.cos(lat2Bis);
+    const rad = 6371;
+    const c = 2 * Math.asin(Math.sqrt(a));
+    return rad * c;
+  }
 
   // responsive design for the globe
   useLayoutEffect(() => {
