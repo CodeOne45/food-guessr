@@ -25,6 +25,9 @@ export default function World({
   const geoLocationURL = 'https://geolocation-db.com/json/';
   const countrieFlagURL = 'https://restcountries.eu/data/';
 
+  const currentDate = new Date();
+  const isDayTime = currentDate.getHours() >= 6 && currentDate.getHours() <= 20;
+
   // load data
   useEffect(() => {
     // load countries data (src: http://geojson.xyz/)
@@ -140,7 +143,7 @@ export default function World({
       width={newWidth}
       height={newHeight}
       globeImageUrl="./earth-blue-marble.jpg"
-      backgroundImageUrl="./bg.jpg"
+      backgroundImageUrl={isDayTime ? './bg-day.png' : './bg-night.png'}
       lineHoverPrecision={0}
       polygonsData={countries.features.filter(
         d => !['AQ', '-99'].includes(d.properties.ISO_A2)
