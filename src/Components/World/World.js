@@ -78,7 +78,7 @@ export default function World({ parentCallback, openSideBar }) {
       width={newWidth}
       height={newHeight}
       globeImageUrl="./earth-blue-marble.jpg"
-      backgroundImageUrl={isDayTime ? './bg-night.png' : './bg-night.png'}
+      backgroundImageUrl={isDayTime ? './bg-day.png' : './bg-night.png'}
       lineHoverPrecision={0}
       polygonsData={countries.features.filter(
         d => !['AQ', '-99'].includes(d.properties.ISO_A2)
