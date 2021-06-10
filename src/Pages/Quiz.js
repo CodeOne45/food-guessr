@@ -117,6 +117,7 @@ export default function Quiz() {
         <div className="mt-5 px-6 flex-grow">
           <nav className="flex flex-col px-2" aria-label="Sidebar">
             <Question meal={meal} play={play} />
+            <Answer playerAnswer={playerAnswer} result={result} />
           </nav>
         </div>
         {/* Go back home btn */}
@@ -143,7 +144,7 @@ export default function Quiz() {
           goodCountry={country}
         />
       </div>
-    {/* Result Modal */}
+      {/* Result Modal */}
       {/* <Modal /> */}
       {/* Loading animation */}
       <AnimatedClouds />
