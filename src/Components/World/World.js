@@ -143,7 +143,7 @@ export default function World({
       width={newWidth}
       height={newHeight}
       globeImageUrl="./earth-blue-marble.jpg"
-      backgroundImageUrl={isDayTime ? './bg-day.png' : './bg-night.png'}
+      backgroundImageUrl={isDayTime ? './bg-day.jpg' : './bg-night.jpg'}
       lineHoverPrecision={0}
       polygonsData={countries.features.filter(
         d => !['AQ', '-99'].includes(d.properties.ISO_A2)
