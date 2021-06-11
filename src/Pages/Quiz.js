@@ -17,7 +17,7 @@ export default function Quiz() {
   const [meal, setMeal] = useState({}); // data about the current meal
   const [country, setCountry] = useState({}); // data about the country of the current meal
   const [countriesAPI, setCountriesAPI] = useState([]); // data about all countries
-  const [playerAnswer, setPlayerAnswer] = useState('');
+  const [playerAnswer, setPlayerAnswer] = useState([]);
   const [result, setResult] = useState('');
   const [score, setScore] = useState(0);
   const [distance, setDistance] = useState(0);
@@ -95,21 +95,20 @@ export default function Quiz() {
       );
   };
 
-  const calculatePoints = pDistance => {
-    const pts = Math.round(distanceMax - pDistance);
-    setDistance(pDistance);
+  const calculatePoints = () => {
+    const pts = Math.round(distanceMax - distance);
     setPoints(pts < 0 ? 0 : pts);
     setOpenModal(true);
   };
 
-  const checkAnswer = (pAnswerISOA3, pDistance) => {
+  const checkAnswer = pAnswerISOA3 => {
     try {
       if (pAnswerISOA3 === country.alpha3Code) {
         setResult('Trouvé !'); // TODO A CHANGER
-        calculatePoints(pDistance);
+        calculatePoints();
       } else if (attempts === 0) {
         setResult(`:(`);
-        calculatePoints(pDistance);
+        calculatePoints();
       } else {
         setResult(`Dommage, il vous reste ${attempts} essais`);
         setAttempts(attempts - 1);
@@ -119,9 +118,19 @@ export default function Quiz() {
     }
   };
 
-  const checkPlayerAnswer = (pAnswerName, pAnswerISOA3, pDistance) => {
-    setPlayerAnswer(pAnswerName);
-    checkAnswer(pAnswerISOA3, pDistance);
+  const checkPlayerAnswer = (pChoice, pISOA3, pDistance) => {
+    setPlayerAnswer([pChoice, pISOA3]);
+    setDistance(pDistance);
+  };
+
+  const guess = () => {
+    try {
+      if (!playerAnswer[0] && !playerAnswer[1]) {
+        setResult('Veillez choisir un pays...');
+      } else checkAnswer(playerAnswer[1]);
+    } catch (err) {
+      console.log(`[Err] No Guess : ${err}`);
+    }
   };
 
   const nextGame = () => {
@@ -152,8 +161,12 @@ export default function Quiz() {
         {/* Quiz content */}
         <div className="mt-5 px-6 flex-grow">
           <nav className="flex flex-col px-2" aria-label="Sidebar">
-            <Question meal={meal} play={play} />
-            <Answer playerAnswer={playerAnswer} result={result} score={score} />
+            <Question meal={meal} play={play} guess={guess} />
+            <Answer
+              pAnswerCountry={playerAnswer[0]}
+              result={result}
+              score={score}
+            />
           </nav>
         </div>
         {/* Go back home btn */}
@@ -178,7 +191,6 @@ export default function Quiz() {
           openSideBar={() => openSideBarTween.current.restart()}
           countriesAPI={countriesAPI}
           goodCountry={country}
-          setDistance={setDistance}
         />
       </div>
       {/* Result Modal */}
