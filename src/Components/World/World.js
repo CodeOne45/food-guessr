@@ -14,7 +14,6 @@ export default function World({
   openSideBar,
   countriesAPI,
   goodCountry,
-  setDistance,
 }) {
   const globeRef = useRef();
   const [countries, setCountries] = useState({ features: [] });
@@ -70,17 +69,6 @@ export default function World({
           ],
         },
       ]);
-      setDistance(
-        Math.round(
-          // eslint-disable-next-line @typescript-eslint/no-use-before-define
-          haversine(
-            clickLocation.lat,
-            clickLocation.lng,
-            goodCountry.latlng[0],
-            goodCountry.latlng[1]
-          )
-        )
-      );
     } else {
       setArcData([]);
     }
@@ -173,11 +161,18 @@ export default function World({
             .latlng;
           setClickLocation({ lat: tmpLocation[0], lng: tmpLocation[1] });
           openSideBar();
+          const distance = Math.round(
+            haversine(
+              tmpLocation[0],
+              tmpLocation[1],
+              goodCountry.latlng[0],
+              goodCountry.latlng[1]
+            )
+          );
+          parentCallback(d.ADMIN, d.ISO_A3, distance);
         } catch (err) {
           console.log(`[Err] Can't travel to here : ${err}`); // TypeError
         }
-
-        parentCallback(d.ADMIN, d.ISO_A3);
       }}
       arcsData={arcData}
       arcColor="color"
@@ -195,5 +190,4 @@ World.propTypes = {
   openSideBar: PropTypes.func.isRequired,
   countriesAPI: PropTypes.shape.isRequired,
   goodCountry: PropTypes.shape.isRequired,
-  setDistance: PropTypes.func.isRequired,
 };

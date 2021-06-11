@@ -95,20 +95,21 @@ export default function Quiz() {
       );
   };
 
-  const calculatePoints = () => {
-    const pts = Math.round(distanceMax - distance);
+  const calculatePoints = pDistance => {
+    const pts = Math.round(distanceMax - pDistance);
+    setDistance(pDistance);
     setPoints(pts < 0 ? 0 : pts);
     setOpenModal(true);
   };
 
-  const checkAnswer = pAnswerISOA3 => {
+  const checkAnswer = (pAnswerISOA3, pDistance) => {
     try {
       if (pAnswerISOA3 === country.alpha3Code) {
         setResult('Trouvé !'); // TODO A CHANGER
-        calculatePoints();
+        calculatePoints(pDistance);
       } else if (attempts === 0) {
         setResult(`:(`);
-        calculatePoints();
+        calculatePoints(pDistance);
       } else {
         setResult(`Dommage, il vous reste ${attempts} essais`);
         setAttempts(attempts - 1);
@@ -118,9 +119,9 @@ export default function Quiz() {
     }
   };
 
-  const checkPlayerAnswer = (pAnswerName, pAnswerISOA3) => {
+  const checkPlayerAnswer = (pAnswerName, pAnswerISOA3, pDistance) => {
     setPlayerAnswer(pAnswerName);
-    checkAnswer(pAnswerISOA3);
+    checkAnswer(pAnswerISOA3, pDistance);
   };
 
   const nextGame = () => {
@@ -186,8 +187,8 @@ export default function Quiz() {
         openModal={openModal}
         setOpenModal={setOpenModal}
         nextGame={nextGame}
-        points={points}
         distance={distance}
+        points={points}
       />
       {/* Loading animation */}
       <AnimatedClouds />
