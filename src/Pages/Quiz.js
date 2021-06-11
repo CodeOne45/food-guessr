@@ -50,7 +50,7 @@ export default function Quiz() {
   useEffect(() => {
     setCountry(
       countriesAPI.find(
-        item => item.demonym === meal.strArea || item.name === meal.strArea // TODO a changer pour le iso a3
+        item => item.name === meal.strArea || item.demonym === meal.strArea // TODO a changer pour le iso a3
       )
     );
   }, [meal]);
