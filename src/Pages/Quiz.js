@@ -17,7 +17,8 @@ export default function Quiz() {
   const [playerAnswer, setPlayerAnswer] = useState('');
   const [result, setResult] = useState('');
   const [score, setScore] = useState(0);
-  const [openModal, setOpenModal] = useState(true);
+  const [distance, setDistance] = useState(0);
+  const [openModal, setOpenModal] = useState(false);
   const countriesNameURL = './restcountries_all.json';
   // const countriesAPIURL = 'https://restcountries.eu/rest/v2/alpha?codes=';
   const randomMealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
@@ -66,7 +67,11 @@ export default function Quiz() {
       .then(
         data => {
           try {
-            setMeal(data.meals[0]);
+            if (data.meals[0].strArea === 'Unknown') {
+              play();
+            } else {
+              setMeal(data.meals[0]);
+            }
             // console.log(data.meals[0]); // TODO a retirer
           } catch (err) {
             console.log(err); // TypeError
@@ -97,6 +102,7 @@ export default function Quiz() {
 
   const nextGame = () => {
     setOpenModal(false);
+    play();
   };
 
   return (
@@ -148,6 +154,7 @@ export default function Quiz() {
           openSideBar={() => openSideBarTween.current.restart()}
           countriesAPI={countriesAPI}
           goodCountry={country}
+          setDistance={setDistance}
         />
       </div>
       {/* Result Modal */}
@@ -156,6 +163,8 @@ export default function Quiz() {
         openModal={openModal}
         setOpenModal={setOpenModal}
         nextGame={nextGame}
+        score={score}
+        distance={distance}
       />
       {/* Loading animation */}
       <AnimatedClouds />

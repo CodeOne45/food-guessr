@@ -8,8 +8,9 @@ export default function Modal({
   openModal,
   setOpenModal,
   nextGame,
+  score,
+  distance,
 }) {
-  console.log(`Modal open = ${openModal}`);
   return (
     <Transition.Root show={openModal} as={Fragment}>
       <Dialog
@@ -75,20 +76,22 @@ export default function Modal({
                     Mauvaise réponse !
                   </Dialog.Title>
                   <div className="mt-2 text-sm font-medium">
+                    {/* TODO a réduite en atome */}
                     <p>
                       Réponse :{' '}
                       <span className="text-yellow-600">
-                        {goodCountry ? goodCountry.name : 'unknow'}
+                        {goodCountry ? goodCountry.name : 'Unknow'}
                       </span>
                     </p>
                     <p>
                       Vous étiez à{' '}
-                      <span className="text-yellow-600">200 km</span> de la
-                      réponse
+                      <span className="text-yellow-600">{distance} km</span> de
+                      la réponse
                     </p>
+                    {/* TODO a réduite en atome */}
                     <p>
                       Points obtenus :{' '}
-                      <span className="text-yellow-600">10</span>
+                      <span className="text-yellow-600">{score}</span>
                     </p>
                   </div>
                 </div>
@@ -115,4 +118,6 @@ Modal.propTypes = {
   openModal: PropTypes.bool.isRequired,
   setOpenModal: PropTypes.func.isRequired,
   nextGame: PropTypes.func.isRequired,
+  score: PropTypes.number.isRequired,
+  distance: PropTypes.number.isRequired,
 };

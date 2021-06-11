@@ -14,6 +14,7 @@ export default function World({
   openSideBar,
   countriesAPI,
   goodCountry,
+  setDistance,
 }) {
   const globeRef = useRef();
   const [countries, setCountries] = useState({ features: [] });
@@ -66,7 +67,7 @@ export default function World({
           ],
         },
       ]);
-      console.log(
+      setDistance(
         // eslint-disable-next-line @typescript-eslint/no-use-before-define
         haversine(
           clickLocation.lat,
@@ -88,7 +89,7 @@ export default function World({
    * @param {*} lon1 longitude of the first point
    * @param {*} lat2 latitude of the second point
    * @param {*} lon2 longitude of the second point
-   * @return the distante between 2 points
+   * @return the distante between 2 points in Kilometer
    */
   function haversine(lat1, lon1, lat2, lon2) {
     // distance between latitudes & longitudes
@@ -189,4 +190,5 @@ World.propTypes = {
   openSideBar: PropTypes.func.isRequired,
   countriesAPI: PropTypes.shape.isRequired,
   goodCountry: PropTypes.shape.isRequired,
+  setDistance: PropTypes.func.isRequired,
 };
