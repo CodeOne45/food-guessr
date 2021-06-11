@@ -71,12 +71,14 @@ export default function World({
         },
       ]);
       setDistance(
-        // eslint-disable-next-line @typescript-eslint/no-use-before-define
-        haversine(
-          clickLocation.lat,
-          clickLocation.lng,
-          goodCountry.latlng[0],
-          goodCountry.latlng[1]
+        Math.round(
+          // eslint-disable-next-line @typescript-eslint/no-use-before-define
+          haversine(
+            clickLocation.lat,
+            clickLocation.lng,
+            goodCountry.latlng[0],
+            goodCountry.latlng[1]
+          )
         )
       );
     } else {

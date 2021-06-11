@@ -8,7 +8,7 @@ export default function Modal({
   openModal,
   setOpenModal,
   nextGame,
-  score,
+  points,
   distance,
 }) {
   return (
@@ -91,7 +91,7 @@ export default function Modal({
                     {/* TODO a réduite en atome */}
                     <p>
                       Points obtenus :{' '}
-                      <span className="text-yellow-600">{score}</span>
+                      <span className="text-yellow-600">{points}</span>
                     </p>
                   </div>
                 </div>
@@ -118,6 +118,6 @@ Modal.propTypes = {
   openModal: PropTypes.bool.isRequired,
   setOpenModal: PropTypes.func.isRequired,
   nextGame: PropTypes.func.isRequired,
-  score: PropTypes.number.isRequired,
+  points: PropTypes.number.isRequired,
   distance: PropTypes.number.isRequired,
 };
