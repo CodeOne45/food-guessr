@@ -6,17 +6,24 @@ import Answer from 'Components/Answer/Answer';
 import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
 import foodGuessrURL from 'foodGuessrURL';
 import Link from 'Components/UI/Link/Link';
-// import Modal from 'Components/Modal/Modal';
+import Modal from 'Components/Modal/Modal';
 import Question from 'Components/Question/Question';
 import World from 'Components/World/World';
 
 export default function Quiz() {
+  const nbAttemptsMax = 1;
+  const distanceMax = 5000;
+
   const [meal, setMeal] = useState({}); // data about the current meal
-  const [country, setCountry] = useState(); // data about the country of the current meal
+  const [country, setCountry] = useState({}); // data about the country of the current meal
   const [countriesAPI, setCountriesAPI] = useState([]); // data about all countries
   const [playerAnswer, setPlayerAnswer] = useState('');
   const [result, setResult] = useState('');
   const [score, setScore] = useState(0);
+  const [distance, setDistance] = useState(0);
+  const [openModal, setOpenModal] = useState(false);
+  const [attempts, setAttempts] = useState(nbAttemptsMax);
+  const [points, setPoints] = useState(0);
   const countriesNameURL = './restcountries_all.json';
   // const countriesAPIURL = 'https://restcountries.eu/rest/v2/alpha?codes=';
   const randomMealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
@@ -48,13 +55,20 @@ export default function Quiz() {
   useEffect(() => {
     setCountry(
       countriesAPI.find(
-        item => item.demonym === meal.strArea || item.name === meal.strArea // TODO a changer pour le iso a3
+        item => item.name === meal.strArea || item.demonym === meal.strArea // TODO a changer pour le iso a3
       )
     );
   }, [meal]);
 
+  useEffect(() => {
+    setScore(score + points);
+  }, [points]);
+
   const reset = () => {
+    setAttempts(nbAttemptsMax);
+    setDistance(0);
     setPlayerAnswer('');
+    setPoints(0);
     setResult('');
   };
 
@@ -65,7 +79,11 @@ export default function Quiz() {
       .then(
         data => {
           try {
-            setMeal(data.meals[0]);
+            if (data.meals[0].strArea === 'Unknown') {
+              play();
+            } else {
+              setMeal(data.meals[0]);
+            }
             // console.log(data.meals[0]); // TODO a retirer
           } catch (err) {
             console.log(err); // TypeError
@@ -77,20 +95,37 @@ export default function Quiz() {
       );
   };
 
+  const calculatePoints = () => {
+    const pts = Math.round(distanceMax - distance);
+    setPoints(pts < 0 ? 0 : pts);
+    setOpenModal(true);
+  };
+
   const checkAnswer = pAnswerISOA3 => {
     try {
       if (pAnswerISOA3 === country.alpha3Code) {
-        setResult('OK'); // TODO A CHANGER
-        setScore(score + 100);
-      } else setResult('Non OK');
+        setResult('Trouvé !'); // TODO A CHANGER
+        calculatePoints();
+      } else if (attempts === 0) {
+        setResult(`:(`);
+        calculatePoints();
+      } else {
+        setResult(`Dommage, il vous reste ${attempts} essais`);
+        setAttempts(attempts - 1);
+      }
     } catch (err) {
       console.log(`[Err] No data on the selected country : ${err}`);
     }
   };
 
-  const callbackPlayerAnswer = (pAnswerName, pAnswerISOA3) => {
+  const checkPlayerAnswer = (pAnswerName, pAnswerISOA3) => {
     setPlayerAnswer(pAnswerName);
     checkAnswer(pAnswerISOA3);
+  };
+
+  const nextGame = () => {
+    setOpenModal(false);
+    play();
   };
 
   return (
@@ -117,7 +152,7 @@ export default function Quiz() {
         <div className="mt-5 px-6 flex-grow">
           <nav className="flex flex-col px-2" aria-label="Sidebar">
             <Question meal={meal} play={play} />
-            <Answer playerAnswer={playerAnswer} result={result} />
+            <Answer playerAnswer={playerAnswer} result={result} score={score} />
           </nav>
         </div>
         {/* Go back home btn */}
@@ -138,14 +173,22 @@ export default function Quiz() {
       {/* World */}
       <div className="flex-1">
         <World
-          parentCallback={callbackPlayerAnswer}
+          parentCallback={checkPlayerAnswer}
           openSideBar={() => openSideBarTween.current.restart()}
           countriesAPI={countriesAPI}
           goodCountry={country}
+          setDistance={setDistance}
         />
       </div>
       {/* Result Modal */}
-      {/* <Modal /> */}
+      <Modal
+        goodCountry={country}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+        nextGame={nextGame}
+        points={points}
+        distance={distance}
+      />
       {/* Loading animation */}
       <AnimatedClouds />
     </div>
