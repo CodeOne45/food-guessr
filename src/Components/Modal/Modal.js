@@ -51,30 +51,45 @@ export default function Modal({
           >
             <div className="inline-block align-bottom bg-white rounded-xl px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6">
               <div>
-                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
-                  <CheckIcon
-                    className="h-6 w-6 text-green-600"
-                    aria-hidden="true"
-                  />
-                </div>
-                <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
-                  <XIcon className="h-6 w-6 text-red-600" aria-hidden="true" />
-                </div>
+                {(() => {
+                  if (distance === 0) {
+                    return (
+                      <div className="flex flex-col items-center space-y-3">
+                        <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
+                          <CheckIcon
+                            className="h-6 w-6 text-green-600"
+                            aria-hidden="true"
+                          />
+                        </div>
+                        <Dialog.Title
+                          as="h3"
+                          className="text-center text-lg leading-6 font-medium text-green-600"
+                        >
+                          Bravo ! Vous avez trouvé la bonne réponse
+                        </Dialog.Title>
+                      </div>
+                    );
+                  }
+
+                  return (
+                    <div className="flex flex-col items-center space-y-3">
+                      <div className="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
+                        <XIcon
+                          className="h-6 w-6 text-red-600"
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <Dialog.Title
+                        as="h3"
+                        className="text-center text-lg leading-6 font-medium text-red-600"
+                      >
+                        Mauvaise réponse !
+                      </Dialog.Title>
+                    </div>
+                  );
+                })()}
 
                 <div className="mt-3 text-center sm:mt-5">
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg leading-6 font-medium text-green-600"
-                  >
-                    Bravo ! Vous avez trouvé la bonne réponse
-                  </Dialog.Title>
-
-                  <Dialog.Title
-                    as="h3"
-                    className="text-lg leading-6 font-medium text-red-600"
-                  >
-                    Mauvaise réponse !
-                  </Dialog.Title>
                   <div className="mt-2 text-sm font-medium">
                     {/* TODO a réduite en atome */}
                     <p>
