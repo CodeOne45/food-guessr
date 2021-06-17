@@ -57,7 +57,7 @@ export default function LogoClouds() {
               Fabriqué avec les dernières technologies web
             </h2>
             <p className="mt-3 max-w-3xl text-lg text-gray-500">
-              Le jeu auquel vous allez jouer à été codé avec les dernières
+              Le jeu auquel vous allez jouer a été codé avec les dernières
               technologies présentes sur le marché (react JS, Node JS,
               Tailwindcss, HTML 5 et CSS 3). Le but est de vous apporter une
               expérience optimale avec un design épuré et des animations hors du
