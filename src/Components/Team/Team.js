@@ -20,8 +20,8 @@ const people = [
     imageUrl: avatarXiumin,
   },
   {
-    name: 'Aman Kumar',
-    role: 'Chef de projet / Développeur',
+    name: 'Aman KUMAR',
+    role: 'Chef de projet / Développeur Fullstack',
     imageUrl: avatarAman,
   },
   {

@@ -115,7 +115,9 @@ export default function Modal({
                 <button
                   type="button"
                   className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-yellow-600 text-base font-medium text-white bg-yellow-600 hover:bg-white hover:border-yellow-600 hover:text-yellow-600 focus:outline-none"
-                  onClick={() => nextGame()}
+                  onClick={() => {
+                    nextGame();
+                  }}
                 >
                   Continuer
                 </button>
