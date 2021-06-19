@@ -96,7 +96,7 @@ export default function Quiz() {
   };
 
   const calculatePoints = () => {
-    const pts = Math.round(distanceMax - distance);
+    const pts = Math.round((distanceMax - distance) / 5);
     setPoints(pts < 0 ? 0 : pts);
     setOpenModal(true);
   };

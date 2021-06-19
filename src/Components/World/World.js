@@ -126,7 +126,6 @@ export default function World({
 
   const [newWidth, newHeight] = size; // adapter le globe à la taille de l'écran
   let flagScr; // lien vers l'image du drapeau d'un pays
-  let tmpLocation;
 
   return (
     <Globe
@@ -157,8 +156,10 @@ export default function World({
       onPolygonClick={({ properties: d }) => {
         try {
           // se déplace au coord enregistré dans les données
-          tmpLocation = countriesAPI.find(item => item.alpha3Code === d.ISO_A3)
-            .latlng;
+          const tmpCountry = countriesAPI.find(
+            item => item.alpha3Code === d.ISO_A3
+          );
+          const tmpLocation = tmpCountry.latlng;
           setClickLocation({ lat: tmpLocation[0], lng: tmpLocation[1] });
           openSideBar();
           const distance = Math.round(
@@ -169,7 +170,10 @@ export default function World({
               goodCountry.latlng[1]
             )
           );
-          parentCallback(d.ADMIN, d.ISO_A3, distance);
+          const cName = tmpCountry.translations
+            ? tmpCountry.translations.fr
+            : d.ADMIN;
+          parentCallback(cName, d.ISO_A3, distance);
         } catch (err) {
           console.log(`[Err] Can't travel to here : ${err}`); // TypeError
         }
