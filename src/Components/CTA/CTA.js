@@ -92,9 +92,9 @@ export default function CTA() {
                 Why Food-Guessr ?
               </h2>
               <p className="text-lg text-white">
-                Varius facilisi mauris sed sit. Non sed et duis dui leo,
-                vulputate id malesuada non. Cras aliquet purus dui laoreet diam
-                sed lacus, fames.
+                L’objectif est de vous faire découvrir de nombreux plats afin
+                d’explorer la culture culinaire des différents pays, et ce, avec
+                une touche de fun.
               </p>
               <Link
                 href={foodGuessrURL.quiz}

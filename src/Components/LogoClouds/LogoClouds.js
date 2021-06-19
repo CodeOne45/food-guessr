@@ -57,9 +57,11 @@ export default function LogoClouds() {
               Fabriqué avec les dernières technologies web
             </h2>
             <p className="mt-3 max-w-3xl text-lg text-gray-500">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et,
-              egestas tempus tellus etiam sed. Quam a scelerisque amet
-              ullamcorper eu enim et fermentum, augue.
+              Le jeu auquel vous allez jouer a été codé avec les dernières
+              technologies présentes sur le marché (react JS, Node JS,
+              Tailwindcss, HTML 5 et CSS 3). Le but est de vous apporter une
+              expérience optimale avec un design épuré et des animations hors du
+              commun.
             </p>
           </div>
           <div
