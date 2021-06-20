@@ -143,7 +143,7 @@ export default function Quiz() {
       {/* Side Bar */}
       <div
         ref={sideBar}
-        className="absolute z-20 w-3/5 md:w-1/5 h-full flex flex-col pt-5 bg-white"
+        className="absolute z-20 w-3/5 sm:w-2/5 md:w-2/5 lg:w-1/5 h-full flex flex-col pt-5 bg-white"
       >
         {/* Logo + close side bar btn */}
         <div className="flex justify-between flex-shrink-0 px-4 items-center">
