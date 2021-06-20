@@ -204,6 +204,7 @@ export default function Quiz() {
           openSideBar={() => openSideBarTween.current.restart()}
           countriesAPI={countriesAPI}
           goodCountry={country}
+          isShowArc={openModal}
         />
       </div>
       {/* Result Modal */}

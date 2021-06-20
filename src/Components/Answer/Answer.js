@@ -6,7 +6,7 @@ export default function Answer({ pAnswerCountry, result, score }) {
   return (
     <div className="md:text-lg mt-6 space-y-3">
       <InfoText text="Score actuel" colorText={score} />
-      <InfoText text="Pays choisis" colorText={pAnswerCountry} />
+      <InfoText text="Pays choisi" colorText={pAnswerCountry} />
       <InfoText text="Information" colorText={result} />
     </div>
   );

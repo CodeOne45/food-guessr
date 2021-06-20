@@ -14,7 +14,7 @@ export default function World({
   openSideBar,
   countriesAPI,
   goodCountry,
-  // isShowArc,
+  isShowArc,
 }) {
   const globeRef = useRef();
   const [countries, setCountries] = useState({ features: [] });
@@ -48,6 +48,28 @@ export default function World({
       });
   }, []);
 
+  /**
+   * Set arc data with good format
+   * @param {*} srtLat start latitude
+   * @param {*} srtLng start longitude
+   * @param {*} eLat ending latitude
+   * @param {*} eLng ending longitude
+   */
+  const setArcDataFunc = (srtLat, srtLng, eLat, eLng) => {
+    setArcData([
+      {
+        startLat: srtLat,
+        startLng: srtLng,
+        endLat: eLat, // -34.0
+        endLng: eLng, // -64.0
+        color: [
+          ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)],
+          ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)],
+        ],
+      },
+    ]);
+  };
+
   useEffect(() => {
     globeRef.current.pointOfView(
       {
@@ -58,22 +80,31 @@ export default function World({
       2500
     );
     if (goodCountry && goodCountry.latlng) {
-      setArcData([
-        {
-          startLat: clickLocation.lat,
-          startLng: clickLocation.lng,
-          endLat: goodCountry.latlng[0], // -34.0
-          endLng: goodCountry.latlng[1], // -64.0
-          color: [
-            ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)],
-            ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)],
-          ],
-        },
-      ]);
+      setArcDataFunc(
+        clickLocation.lat,
+        clickLocation.lng,
+        clickLocation.lat,
+        clickLocation.lng
+      );
     } else {
       setArcData([]);
     }
   }, [clickLocation]);
+
+  useEffect(() => {
+    if (isShowArc) {
+      try {
+        setArcDataFunc(
+          clickLocation.lat,
+          clickLocation.lng,
+          goodCountry.latlng[0],
+          goodCountry.latlng[1]
+        );
+      } catch (error) {
+        console.log(`Fail sho arc : ${error}`);
+      }
+    }
+  }, [isShowArc]);
 
   /**
    * Haversine formula to calculate the distance between 2 points on a sphere with their latitudes & longitudes.
@@ -198,5 +229,5 @@ World.propTypes = {
   openSideBar: PropTypes.func.isRequired,
   countriesAPI: PropTypes.shape.isRequired,
   goodCountry: PropTypes.shape.isRequired,
-  // isShowArc: PropTypes.bool.isRequired,
+  isShowArc: PropTypes.bool.isRequired,
 };
