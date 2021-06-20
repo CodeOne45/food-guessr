@@ -11,7 +11,7 @@ import Question from 'Components/Question/Question';
 import World from 'Components/World/World';
 
 export default function Quiz() {
-  const nbAttemptsMax = 1;
+  const nbAttemptsMax = 0;
   const distanceMax = 5000;
 
   const [meal, setMeal] = useState({}); // data about the current meal
@@ -66,7 +66,7 @@ export default function Quiz() {
 
   const reset = () => {
     setAttempts(nbAttemptsMax);
-    setDistance(0);
+    // setDistance(0);
     setPlayerAnswer('');
     setPoints(0);
     setResult('');
