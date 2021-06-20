@@ -14,6 +14,8 @@ import World from 'Components/World/World';
 export default function Quiz() {
   const nbAttemptsMax = 0;
   const distanceMax = 5000;
+  const reducePoints = 5; // divides by 5 the points won by the player
+  const reducePerIndice = 4; // score reduced by 25 percent at each given index
 
   const [meal, setMeal] = useState({}); // data about the current meal
   const [country, setCountry] = useState({}); // data about the country of the current meal
@@ -24,6 +26,7 @@ export default function Quiz() {
   const [distance, setDistance] = useState(0);
   const [openModal, setOpenModal] = useState(false);
   const [attempts, setAttempts] = useState(nbAttemptsMax);
+  const [nbClick, setNbClick] = useState(0);
   const [points, setPoints] = useState(0);
   const countriesNameURL = './restcountries_all.json';
   // const countriesAPIURL = 'https://restcountries.eu/rest/v2/alpha?codes=';
@@ -56,7 +59,10 @@ export default function Quiz() {
   useEffect(() => {
     setCountry(
       countriesAPI.find(
-        item => item.name === meal.strArea || item.demonym === meal.strArea // TODO a changer pour le iso a3
+        item =>
+          item.alpha3Code === meal.ISO_A3 ||
+          item.name === meal.strArea ||
+          item.demonym === meal.strArea // TODO a changer pour le iso a3
       )
     );
   }, [meal]);
@@ -68,6 +74,7 @@ export default function Quiz() {
   const reset = () => {
     setAttempts(nbAttemptsMax);
     // setDistance(0);
+    setNbClick(0);
     setPlayerAnswer('');
     setPoints(0);
     setResult('');
@@ -97,7 +104,8 @@ export default function Quiz() {
   };
 
   const calculatePoints = () => {
-    const pts = Math.round((distanceMax - distance) / 5);
+    const reduce = (reducePerIndice - nbClick) / reducePerIndice;
+    const pts = Math.round(((distanceMax - distance) / reducePoints) * reduce);
     setPoints(pts < 0 ? 0 : pts);
     setOpenModal(true);
   };
@@ -105,7 +113,7 @@ export default function Quiz() {
   const checkAnswer = pAnswerISOA3 => {
     try {
       if (pAnswerISOA3 === country.alpha3Code) {
-        setResult('Trouvé !'); // TODO A CHANGER
+        setResult('Trouvé !');
         calculatePoints();
       } else if (attempts === 0) {
         setResult(`:(`);
@@ -163,7 +171,7 @@ export default function Quiz() {
         <div className="mt-5 px-6 flex-grow">
           <nav className="flex flex-col px-2" aria-label="Sidebar">
             <Question meal={meal} play={play} guess={guess} />
-            <Indice info={country} />
+            <Indice nbClick={nbClick} setNbClick={setNbClick} info={country} />
             <Answer
               pAnswerCountry={playerAnswer[0]}
               result={result}

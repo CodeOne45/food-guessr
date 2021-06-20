@@ -13,13 +13,13 @@ export default function Question({ meal, play, guess }) {
                 {meal.strMeal}
               </span>
             </p>
-            {/* Area à retirer */}
-            <p>
+            {/* Area à retirer, que pour Debug */}
+            {/* <p>
               <span className="font-bold text-gray-900">Area : </span>
               <span className="font-medium hover:text-yellow-600 bg-black hover:bg-white">
                 {meal.strArea}
               </span>
-            </p>
+            </p> */}
           </div>
 
           <img

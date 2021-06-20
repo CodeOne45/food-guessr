@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InfoText from 'Components/InfoText/InfoText';
+import InfoText from 'Components/Info/InfoText';
 
 export default function Answer({ pAnswerCountry, result, score }) {
   return (

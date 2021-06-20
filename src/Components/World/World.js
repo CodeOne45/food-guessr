@@ -10,10 +10,11 @@ import * as d3 from 'd3';
 import PropTypes from 'prop-types';
 
 export default function World({
-  parentCallback,
+  parentCallback, // set player choice, iso a3 & distance
   openSideBar,
   countriesAPI,
   goodCountry,
+  // isShowArc,
 }) {
   const globeRef = useRef();
   const [countries, setCountries] = useState({ features: [] });
@@ -194,4 +195,5 @@ World.propTypes = {
   openSideBar: PropTypes.func.isRequired,
   countriesAPI: PropTypes.shape.isRequired,
   goodCountry: PropTypes.shape.isRequired,
+  // isShowArc: PropTypes.bool.isRequired,
 };
