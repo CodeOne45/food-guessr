@@ -5,6 +5,7 @@ import AnimatedClouds from 'Components/AnimatedClouds/AnimatedClouds';
 import Answer from 'Components/Answer/Answer';
 import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
 import foodGuessrURL from 'foodGuessrURL';
+import Indice from 'Components/Indice/Indice';
 import Link from 'Components/UI/Link/Link';
 import Modal from 'Components/Modal/Modal';
 import Question from 'Components/Question/Question';
@@ -143,7 +144,7 @@ export default function Quiz() {
       {/* Side Bar */}
       <div
         ref={sideBar}
-        className="absolute z-20 w-3/5 sm:w-2/5 md:w-2/5 lg:w-1/5 h-full flex flex-col pt-5 bg-white"
+        className="absolute z-20 w-3/5 sm:w-2/5 md:w-2/5 lg:w-1/5 h-full flex flex-col pt-5 bg-white overflow-auto"
       >
         {/* Logo + close side bar btn */}
         <div className="flex justify-between flex-shrink-0 px-4 items-center">
@@ -162,6 +163,7 @@ export default function Quiz() {
         <div className="mt-5 px-6 flex-grow">
           <nav className="flex flex-col px-2" aria-label="Sidebar">
             <Question meal={meal} play={play} guess={guess} />
+            <Indice info={country} />
             <Answer
               pAnswerCountry={playerAnswer[0]}
               result={result}
