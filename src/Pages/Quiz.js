@@ -5,29 +5,34 @@ import AnimatedClouds from 'Components/AnimatedClouds/AnimatedClouds';
 import Answer from 'Components/Answer/Answer';
 import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
 import foodGuessrURL from 'foodGuessrURL';
+import Indice from 'Components/Indice/Indice';
 import Link from 'Components/UI/Link/Link';
 import Modal from 'Components/Modal/Modal';
 import Question from 'Components/Question/Question';
 import World from 'Components/World/World';
 
 export default function Quiz() {
-  const nbAttemptsMax = 1;
+  const nbAttemptsMax = 0;
   const distanceMax = 5000;
+  const reducePoints = 5; // divides by 5 the points won by the player
+  const reducePerIndice = 4; // score reduced by 25 percent at each given index
 
   const [meal, setMeal] = useState({}); // data about the current meal
   const [country, setCountry] = useState({}); // data about the country of the current meal
   const [countriesAPI, setCountriesAPI] = useState([]); // data about all countries
-  const [playerAnswer, setPlayerAnswer] = useState('');
+  const [playerAnswer, setPlayerAnswer] = useState([]);
   const [result, setResult] = useState('');
   const [score, setScore] = useState(0);
   const [distance, setDistance] = useState(0);
   const [openModal, setOpenModal] = useState(false);
   const [attempts, setAttempts] = useState(nbAttemptsMax);
+  const [nbClick, setNbClick] = useState(0);
   const [points, setPoints] = useState(0);
   const countriesNameURL = './restcountries_all.json';
   // const countriesAPIURL = 'https://restcountries.eu/rest/v2/alpha?codes=';
   const randomMealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
-  // const randomMealAPI = 'https://api-food-guessr.herokuapp.com/meals/random';
+  const randomCustomMealAPI =
+    'https://api-food-guessr.herokuapp.com/meals/random';
 
   const closeSideBarTween = React.useRef();
   const openSideBarTween = React.useRef();
@@ -55,7 +60,10 @@ export default function Quiz() {
   useEffect(() => {
     setCountry(
       countriesAPI.find(
-        item => item.name === meal.strArea || item.demonym === meal.strArea // TODO a changer pour le iso a3
+        item =>
+          item.alpha3Code === meal.ISO_A3 ||
+          item.name === meal.strArea ||
+          item.demonym === meal.strArea // TODO a changer pour le iso a3
       )
     );
   }, [meal]);
@@ -66,7 +74,8 @@ export default function Quiz() {
 
   const reset = () => {
     setAttempts(nbAttemptsMax);
-    setDistance(0);
+    // setDistance(0);
+    setNbClick(0);
     setPlayerAnswer('');
     setPoints(0);
     setResult('');
@@ -74,7 +83,9 @@ export default function Quiz() {
 
   const play = () => {
     reset();
-    fetch(randomMealAPI)
+    fetch(
+      Math.floor(Math.random() * 10) > 3 ? randomMealAPI : randomCustomMealAPI
+    )
       .then(res => res.json())
       .then(
         data => {
@@ -96,7 +107,8 @@ export default function Quiz() {
   };
 
   const calculatePoints = () => {
-    const pts = Math.round(distanceMax - distance);
+    const reduce = (reducePerIndice - nbClick) / reducePerIndice;
+    const pts = Math.round(((distanceMax - distance) / reducePoints) * reduce);
     setPoints(pts < 0 ? 0 : pts);
     setOpenModal(true);
   };
@@ -104,7 +116,7 @@ export default function Quiz() {
   const checkAnswer = pAnswerISOA3 => {
     try {
       if (pAnswerISOA3 === country.alpha3Code) {
-        setResult('Trouvé !'); // TODO A CHANGER
+        setResult('Trouvé !');
         calculatePoints();
       } else if (attempts === 0) {
         setResult(`:(`);
@@ -118,9 +130,19 @@ export default function Quiz() {
     }
   };
 
-  const checkPlayerAnswer = (pAnswerName, pAnswerISOA3) => {
-    setPlayerAnswer(pAnswerName);
-    checkAnswer(pAnswerISOA3);
+  const checkPlayerAnswer = (pChoice, pISOA3, pDistance) => {
+    setPlayerAnswer([pChoice, pISOA3]);
+    setDistance(pDistance);
+  };
+
+  const guess = () => {
+    try {
+      if (!playerAnswer[0] && !playerAnswer[1]) {
+        setResult('Veillez choisir un pays...');
+      } else checkAnswer(playerAnswer[1]);
+    } catch (err) {
+      console.log(`[Err] No Guess : ${err}`);
+    }
   };
 
   const nextGame = () => {
@@ -133,7 +155,7 @@ export default function Quiz() {
       {/* Side Bar */}
       <div
         ref={sideBar}
-        className="absolute z-20 w-3/5 md:w-1/5 h-full flex flex-col pt-5 bg-white"
+        className="absolute z-20 w-3/5 sm:w-2/5 md:w-2/5 lg:w-1/5 h-full flex flex-col pt-5 bg-white overflow-auto"
       >
         {/* Logo + close side bar btn */}
         <div className="flex justify-between flex-shrink-0 px-4 items-center">
@@ -151,8 +173,13 @@ export default function Quiz() {
         {/* Quiz content */}
         <div className="mt-5 px-6 flex-grow">
           <nav className="flex flex-col px-2" aria-label="Sidebar">
-            <Question meal={meal} play={play} />
-            <Answer playerAnswer={playerAnswer} result={result} score={score} />
+            <Question meal={meal} play={play} guess={guess} />
+            <Indice nbClick={nbClick} setNbClick={setNbClick} info={country} />
+            <Answer
+              pAnswerCountry={playerAnswer[0]}
+              result={result}
+              score={score}
+            />
           </nav>
         </div>
         {/* Go back home btn */}
@@ -177,7 +204,7 @@ export default function Quiz() {
           openSideBar={() => openSideBarTween.current.restart()}
           countriesAPI={countriesAPI}
           goodCountry={country}
-          setDistance={setDistance}
+          isShowArc={openModal}
         />
       </div>
       {/* Result Modal */}
@@ -186,8 +213,8 @@ export default function Quiz() {
         openModal={openModal}
         setOpenModal={setOpenModal}
         nextGame={nextGame}
-        points={points}
         distance={distance}
+        points={points}
       />
       {/* Loading animation */}
       <AnimatedClouds />

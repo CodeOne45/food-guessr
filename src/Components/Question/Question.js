@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export default function Question({ meal, play }) {
+export default function Question({ meal, play, guess }) {
   return (
     <div id="meal-question" className="w-full">
       <div style={meal.strMeal ? { display: 'block' } : { display: 'none' }}>
@@ -13,13 +13,13 @@ export default function Question({ meal, play }) {
                 {meal.strMeal}
               </span>
             </p>
-            {/* Area à retirer */}
-            <p>
+            {/* Area à retirer, que pour Debug */}
+            {/* <p>
               <span className="font-bold text-gray-900">Area : </span>
               <span className="font-medium hover:text-yellow-600 bg-black hover:bg-white">
                 {meal.strArea}
               </span>
-            </p>
+            </p> */}
           </div>
 
           <img
@@ -36,11 +36,12 @@ export default function Question({ meal, play }) {
         id="quiz-play"
         type="button"
         onClick={() => {
-          play();
+          if (meal.strArea) guess();
+          else play();
         }}
         className="font-medium bg-yellow-600 hover:bg-yellow-700 mt-3 px-7 py-3 rounded text-white w-full"
       >
-        J&#39;ai faim !
+        {meal.strArea ? 'Guess' : "J'ai faim !"}
       </button>
     </div>
   );
@@ -49,4 +50,5 @@ export default function Question({ meal, play }) {
 Question.propTypes = {
   meal: PropTypes.shape.isRequired,
   play: PropTypes.func.isRequired,
+  guess: PropTypes.func.isRequired,
 };

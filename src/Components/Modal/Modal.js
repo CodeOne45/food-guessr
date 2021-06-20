@@ -11,6 +11,14 @@ export default function Modal({
   points,
   distance,
 }) {
+  let countryNameFR;
+  if (goodCountry) {
+    if (goodCountry.translations) {
+      countryNameFR = goodCountry.translations.fr;
+    } else {
+      countryNameFR = goodCountry.name;
+    }
+  }
   return (
     <Transition.Root show={openModal} as={Fragment}>
       <Dialog
@@ -95,7 +103,7 @@ export default function Modal({
                     <p>
                       Réponse :{' '}
                       <span className="text-yellow-600">
-                        {goodCountry ? goodCountry.name : 'Unknow'}
+                        {goodCountry ? countryNameFR : 'Unknow'}
                       </span>
                     </p>
                     <p>

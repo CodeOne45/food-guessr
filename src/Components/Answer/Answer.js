@@ -1,26 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import InfoText from 'Components/Info/InfoText';
 
-export default function Answer({ playerAnswer, result, score }) {
+export default function Answer({ pAnswerCountry, result, score }) {
   return (
     <div className="md:text-lg mt-6 space-y-3">
-      <p>
-        <span className="font-bold text-gray-900">Pays choisis : </span>
-        <span className="font-medium text-yellow-600">{playerAnswer}</span>
-      </p>
-      <p>
-        <span className="font-bold text-gray-900"> Réponse : </span>
-        <span className="font-medium text-yellow-600">{result}</span>
-      </p>
-      <p>
-        <span className="font-bold text-gray-900"> Score actuel : </span>
-        <span className="font-medium text-yellow-600">{score}</span>
-      </p>
+      <InfoText text="Score actuel" colorText={score} />
+      <InfoText text="Pays choisi" colorText={pAnswerCountry} />
+      <InfoText text="Information" colorText={result} />
     </div>
   );
 }
 Answer.propTypes = {
-  playerAnswer: PropTypes.string.isRequired,
+  pAnswerCountry: PropTypes.string.isRequired,
   result: PropTypes.string.isRequired,
   score: PropTypes.string.isRequired,
 };
