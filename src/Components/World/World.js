@@ -24,7 +24,7 @@ export default function World({
   const [arcData, setArcData] = useState([]);
   const countriesDataURL = './ne_110m_admin_0_countries.geojson';
   const geoLocationURL = 'https://geolocation-db.com/json/';
-  const countrieFlagURL = 'https://restcountries.eu/data/';
+  // const countrieFlagURL = 'https://restcountries.eu/data/'; // activate to [Get Flag] under mouse
 
   const currentDate = new Date();
   const isDayTime = currentDate.getHours() >= 6 && currentDate.getHours() <= 20;
@@ -126,7 +126,7 @@ export default function World({
   colorScale.domain([0, maxVal]);
 
   const [newWidth, newHeight] = size; // adapter le globe à la taille de l'écran
-  let flagScr; // lien vers l'image du drapeau d'un pays
+  // let flagScr; // [Get Flag] lien vers l'image du drapeau d'un pays
 
   return (
     <Globe
@@ -145,13 +145,16 @@ export default function World({
       }
       polygonSideColor={() => 'rgba(0, 100, 0, 0.15)'}
       polygonStrokeColor={() => '#111'}
-      polygonLabel={({ properties: d }) => {
-        flagScr = `${countrieFlagURL}${d.ISO_A3.toLowerCase()}.svg`;
-        return `<div class="p-1 w-28 h-auto bg-gray-500">
+      polygonLabel={({ properties: d }) =>
+        // flagScr = `${countrieFlagURL}${d.ISO_A3.toLowerCase()}.svg`; // [Get Flag]
+        // return `<div class="p-1 w-28 h-auto bg-gray-500">
+        //           <b class="text-sm">${d.ADMIN}</b>
+        //           <img src="${flagScr}" alt="Flag" />
+        //         </div>`;
+        `<div class="p-1 w-28 h-auto bg-gray-500">
                   <b class="text-sm">${d.ADMIN}</b>
-                  <img src="${flagScr}" alt="Flag" />
-                </div>`;
-      }}
+                </div>`
+      }
       onPolygonHover={setHoverD}
       polygonsTransitionDuration={300}
       onPolygonClick={({ properties: d }) => {

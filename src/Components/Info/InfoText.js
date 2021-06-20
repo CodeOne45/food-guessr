@@ -11,6 +11,7 @@ export default function InfoText({ text, colorText }) {
 }
 
 InfoText.propTypes = {
-  text: PropTypes.string.isRequired,
-  colorText: PropTypes.string.isRequired,
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  colorText: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
 };

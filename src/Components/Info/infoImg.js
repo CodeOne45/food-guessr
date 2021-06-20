@@ -15,6 +15,6 @@ export default function InfoText({ text, url }) {
 }
 
 InfoText.propTypes = {
-  text: PropTypes.string.isRequired,
+  text: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   url: PropTypes.string.isRequired,
 };

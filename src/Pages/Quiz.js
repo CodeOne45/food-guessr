@@ -31,7 +31,8 @@ export default function Quiz() {
   const countriesNameURL = './restcountries_all.json';
   // const countriesAPIURL = 'https://restcountries.eu/rest/v2/alpha?codes=';
   const randomMealAPI = 'https://www.themealdb.com/api/json/v1/1/random.php';
-  // const randomMealAPI = 'https://api-food-guessr.herokuapp.com/meals/random';
+  const randomCustomMealAPI =
+    'https://api-food-guessr.herokuapp.com/meals/random';
 
   const closeSideBarTween = React.useRef();
   const openSideBarTween = React.useRef();
@@ -82,7 +83,9 @@ export default function Quiz() {
 
   const play = () => {
     reset();
-    fetch(randomMealAPI)
+    fetch(
+      Math.floor(Math.random() * 10) > 3 ? randomMealAPI : randomCustomMealAPI
+    )
       .then(res => res.json())
       .then(
         data => {
