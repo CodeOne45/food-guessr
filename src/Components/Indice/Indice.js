@@ -31,7 +31,7 @@ export default function Indice({ nbClick, setNbClick, info }) {
           }}
           className="font-medium bg-yellow-400 hover:bg-yellow-500 mt-3 px-7 py-3 rounded text-white w-full"
         >
-          Aide restante : {indiceList.length}
+          Aide restante : {indiceList.length - nbClick}
         </button>
       ) : (
         <div />
