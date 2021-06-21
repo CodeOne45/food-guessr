@@ -14,7 +14,6 @@ export default function About() {
         trigger: '#about',
         start: 'top bottom',
         end: 'top top',
-        toggleActions: 'play none none reset',
       },
     });
 

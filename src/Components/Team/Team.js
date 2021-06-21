@@ -53,8 +53,7 @@ export default function Team() {
       scrollTrigger: {
         trigger: '#team',
         start: 'top bottom',
-        end: 'top top',
-        toggleActions: 'play none none reset',
+        end: 'top bottom',
       },
     });
 

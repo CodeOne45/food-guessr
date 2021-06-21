@@ -31,7 +31,6 @@ export default function LogoClouds() {
         trigger: '#logo-clouds',
         start: 'top bottom',
         end: 'top top',
-        toggleActions: 'play none none reset',
       },
     });
 
