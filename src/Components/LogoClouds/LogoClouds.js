@@ -10,7 +10,11 @@ import Logo from 'Components/UI/Logo/Logo';
 const logos = [
   { src: reactLogo, alt: 'React', href: 'https://fr.reactjs.org/' },
   { src: nodeJsLogo, alt: 'nodeJS', href: 'https://nodejs.org/fr/' },
-  { src: htmlCssLogo, alt: 'htmlCss', href: '/' },
+  {
+    src: htmlCssLogo,
+    alt: 'htmlCss',
+    href: 'https://www.w3.org/standards/webdesign/htmlcss.html',
+  },
   { src: tailwindLogo, alt: 'TailwindCss', href: 'https://tailwindcss.com/' },
 ];
 
