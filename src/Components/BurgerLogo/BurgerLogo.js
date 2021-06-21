@@ -9,9 +9,10 @@ export default function BurgerLogo() {
     gsap.fromTo(
       burger.current,
       {
-        scale: 0,
+        x: '-30rem',
+        delay: 0.5,
       },
-      { scale: 1, rotation: 360, delay: 0.5 }
+      { x: 0, ease: 'back.out(1.7)', duration: 0.7 }
     );
   });
 
