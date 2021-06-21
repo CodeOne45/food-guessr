@@ -4,7 +4,7 @@ import InfoText from 'Components/Info/InfoText';
 import InfoImg from 'Components/Info/InfoImg';
 
 export default function Clue({ nbClick, setNbClick, info }) {
-  const indiceList = [
+  const clueList = [
     <InfoText
       key="infoText1"
       text="Indice 1"
@@ -23,7 +23,7 @@ export default function Clue({ nbClick, setNbClick, info }) {
   ];
   return info ? (
     <>
-      {nbClick < indiceList.length ? (
+      {nbClick < clueList.length ? (
         <button
           type="button"
           onClick={() => {
@@ -31,12 +31,12 @@ export default function Clue({ nbClick, setNbClick, info }) {
           }}
           className="font-medium bg-yellow-400 hover:bg-yellow-500 mt-3 px-7 py-3 rounded text-white w-full"
         >
-          Aide restante : {indiceList.length}
+          Aide restante : {clueList.length}
         </button>
       ) : (
         <div />
       )}
-      <div id="indiceList">{indiceList.slice(0, nbClick)}</div>
+      <div id="clueList">{clueList.slice(0, nbClick)}</div>
     </>
   ) : (
     <div />
