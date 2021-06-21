@@ -5,7 +5,7 @@ import AnimatedClouds from 'Components/AnimatedClouds/AnimatedClouds';
 import Answer from 'Components/Answer/Answer';
 import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
 import foodGuessrURL from 'foodGuessrURL';
-import Indice from 'Components/Indice/Indice';
+import Clue from 'Components/Clue/Clue';
 import Link from 'Components/UI/Link/Link';
 import Modal from 'Components/Modal/Modal';
 import Question from 'Components/Question/Question';
@@ -119,7 +119,7 @@ export default function Quiz() {
         setResult('Trouvé !');
         calculatePoints();
       } else if (attempts === 0) {
-        setResult(`:(`);
+        setResult(`Mauvaise réponse ! Peut être la prochaine !`);
         calculatePoints();
       } else {
         setResult(`Dommage, il vous reste ${attempts} essais`);
@@ -138,7 +138,7 @@ export default function Quiz() {
   const guess = () => {
     try {
       if (!playerAnswer[0] && !playerAnswer[1]) {
-        setResult('Veillez choisir un pays...');
+        setResult('Veuillez choisir un pays');
       } else checkAnswer(playerAnswer[1]);
     } catch (err) {
       console.log(`[Err] No Guess : ${err}`);
@@ -174,7 +174,7 @@ export default function Quiz() {
         <div className="mt-5 px-6 flex-grow">
           <nav className="flex flex-col px-2" aria-label="Sidebar">
             <Question meal={meal} play={play} guess={guess} />
-            <Indice nbClick={nbClick} setNbClick={setNbClick} info={country} />
+            <Clue nbClick={nbClick} setNbClick={setNbClick} info={country} />
             <Answer
               pAnswerCountry={playerAnswer[0]}
               result={result}
