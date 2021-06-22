@@ -1,7 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import gsapLogo from 'Assets/img/gsap.svg';
 import htmlCssLogo from 'Assets/img/htmlCss.svg';
+import javascriptLogo from 'Assets/img/javascript.svg';
 import nodeJsLogo from 'Assets/img/nodeJs.svg';
 import reactLogo from 'Assets/img/react.svg';
 import tailwindLogo from 'Assets/img/tailwind.svg';
@@ -15,7 +17,13 @@ const logos = [
     alt: 'htmlCss',
     href: 'https://www.w3.org/standards/webdesign/htmlcss.html',
   },
+  {
+    src: javascriptLogo,
+    alt: 'Javascript',
+    href: 'https://developer.mozilla.org/fr/docs/Web/JavaScript',
+  },
   { src: tailwindLogo, alt: 'TailwindCss', href: 'https://tailwindcss.com/' },
+  { src: gsapLogo, alt: 'GSAP', href: 'https://greensock.com/gsap/' },
 ];
 
 export default function LogoClouds() {
@@ -61,8 +69,8 @@ export default function LogoClouds() {
             </h2>
             <p className="mt-3 max-w-3xl text-lg text-gray-500">
               Le jeu auquel vous allez jouer a été codé avec les dernières
-              technologies présentes sur le marché (React JS, Node JS,
-              Tailwindcss, HTML 5 et CSS 3). Le but est de vous apporter une
+              technologies présentes sur le marché (ReactJS, NodeJS,
+              TailwindCSS, HTML5/CSS3 et GSAP). Le but est de vous apporter une
               expérience optimale avec un design épuré et des animations hors du
               commun.
             </p>
