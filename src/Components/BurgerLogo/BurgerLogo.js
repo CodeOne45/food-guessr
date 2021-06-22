@@ -9,10 +9,16 @@ export default function BurgerLogo() {
     gsap.fromTo(
       burger.current,
       {
-        x: '-30rem',
+        scale: 0,
         delay: 0.5,
       },
-      { x: 0, ease: 'back.out(1.7)', duration: 0.7 }
+      {
+        scale: 1,
+
+        rotation: 360,
+        ease: 'back.out(1.7)',
+        duration: 0.7,
+      }
     );
   });
 
