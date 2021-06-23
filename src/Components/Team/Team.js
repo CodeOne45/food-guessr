@@ -12,27 +12,32 @@ const people = [
   {
     name: 'Steven VAN',
     role: 'Développeur front-end',
-    imageUrl: avatarSteven,
+    imageSrc: avatarSteven,
+    href: 'https://github.com/steven-van',
   },
   {
     name: 'Xiumin LIN',
     role: 'Développeur back-end',
-    imageUrl: avatarXiumin,
+    imageSrc: avatarXiumin,
+    href: 'https://github.com/Xiumin-Lin',
   },
   {
     name: 'Aman KUMAR',
     role: 'Chef de projet / Développeur Fullstack',
-    imageUrl: avatarAman,
+    imageSrc: avatarAman,
+    href: 'https://github.com/CodeOne45',
   },
   {
     name: 'Loqman KHALFAOUI',
     role: 'Développeur',
-    imageUrl: avatarLoqman,
+    imageSrc: avatarLoqman,
+    href: 'https://github.com/lokiklf',
   },
   {
     name: 'Eliot GLARNER',
     role: 'Développeur',
-    imageUrl: avatarEliot,
+    imageSrc: avatarEliot,
+    href: 'https://github.com/epg1213',
   },
 ];
 
@@ -48,8 +53,7 @@ export default function Team() {
       scrollTrigger: {
         trigger: '#team',
         start: 'top bottom',
-        end: 'top top',
-        toggleActions: 'play none none reset',
+        end: 'top bottom',
       },
     });
 
@@ -90,8 +94,9 @@ export default function Team() {
               {people.map(person => (
                 <Member
                   name={person.name}
-                  imageUrl={person.imageUrl}
+                  imageSrc={person.imageSrc}
                   role={person.role}
+                  href={person.href}
                 />
               ))}
             </ul>

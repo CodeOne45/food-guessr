@@ -19,7 +19,7 @@ export default function Logo({ src, alt, href }) {
       className="col-span-1 flex justify-center py-8 px-8 bg-gray-50"
     >
       <img
-        className="max-h-12"
+        className="max-h-16"
         src={src}
         alt={alt}
         ref={logo}

@@ -1,7 +1,8 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Popover, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
 import BurgerLogo from 'Components/BurgerLogo/BurgerLogo';
+import { gsap } from 'gsap';
 import NavLink from 'Components/UI/NavLink/NavLink';
 
 const navigation = [
@@ -11,6 +12,17 @@ const navigation = [
 ];
 
 export default function Nav() {
+  const navBar = React.createRef();
+
+  useEffect(() => {
+    gsap.from(navBar.current, {
+      x: '30rem',
+      delay: 1,
+      ease: 'back.out(1.5)',
+      opacity: 0,
+    });
+  });
+
   return (
     <div>
       <svg
@@ -45,7 +57,10 @@ export default function Nav() {
                     </div>
                   </div>
                 </div>
-                <div className="hidden md:block md:ml-10 md:pr-4 md:space-x-8">
+                <div
+                  ref={navBar}
+                  className="hidden md:block md:ml-10 md:pr-4 md:space-x-8"
+                >
                   {navigation.map(item => (
                     <NavLink
                       name={item.name}

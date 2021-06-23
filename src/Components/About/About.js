@@ -14,7 +14,6 @@ export default function About() {
         trigger: '#about',
         start: 'top bottom',
         end: 'top top',
-        toggleActions: 'play none none reset',
       },
     });
 
@@ -87,7 +86,7 @@ export default function About() {
           </h1>
           <p className="mt-8 text-xl text-gray-500 leading-8">
             Entre amusement et découverte, explorer la cuisine à travers tout le
-            globe. Food guessr vous permet de visiter les différents pays via la
+            globe. Food Guessr vous permet de visiter les différents pays via la
             culture de la nourriture. Mais, attention ce jeu risquerait de vous
             ouvrir l’appétit !
           </p>
