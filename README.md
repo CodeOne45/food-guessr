@@ -8,17 +8,14 @@
 ### Project team :
  - KUMAR Aman (github : CodeOne45) - Project Manager / Full-Stack Developer 
  - LIN Xiumin (github : Xiumin-Lin) - Backend Developer
- - VAN Steven (github : Steven) - Frontend Developer  / Designr 
- - GLARNER Eliot (github : epg1213) 
- - KHALFAOUI Loqman (github : lokiklf) - Web Editor
+ - VAN Steven (github : Steven) - Frontend Developer / Designer 
+ - GLARNER Eliot (github : epg1213) - Developer
+ - KHALFAOUI Loqman (github : lokiklf) - Developer
 
-## Table of Contents:
+### Requirement :
+ - Node.js version 14.16.0 or above
 
-- [Getting started](#getting-started)
-- [Source Structure](#source-structure)
-- [Run Scripts](#run-scripts)
-
-## Getting started
+### Getting started
 
 First you should clone the repository
 
@@ -26,33 +23,17 @@ First you should clone the repository
 git clone https://github.com/CodeOne45/food-guessr
 ```
 
-Once the clone is finished you must npm install the both of them
+Then, you must install all the modules necessary for the functioning of Food Guessr
 
 ```
-npx install -g create-react-app
+npm install
 ```
 
-## Source Structure
+And finally you can launch the project
 
-- client - where all the react client code exist, also where the client development environment files are
-  - src
-    - api - the place for all api calls
-    - components - dumb components home
-    - containers - when using redux this is where the connected components should live
-    - resources - folder for utils, helpers etc.
-    - styleMain - main style configurations
-    - App.js - the main app file
-    - index.js - where it all begins:)
-    - routes - helper to dynamically configure your web app routes
-  - webpack
-    - clientConfig.js - general webpack configurations for compiling the client for using on the browser
-    - webpack.dev.js - for development environment webpack configuration, mostly the usage of dev-server
-    - webpack.prod.js - when you want to go to production
-    - ssrConfig.js - general webpack configurations for compiling the client for SSR
-    - webpack.ssr.js - will be used when ssr
-  - .babelrc
-  - webpack.config.js
-- server - where all the node server code exist
+```
+npm start
+```
 
 ## Run Scripts
 
