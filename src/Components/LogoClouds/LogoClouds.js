@@ -57,7 +57,7 @@ export default function LogoClouds() {
         },
         '>'
       );
-  });
+  }, []);
 
   return (
     <section id="logo-clouds" className="bg-white">

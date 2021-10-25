@@ -21,7 +21,7 @@ export default function CTA() {
         end: 'top top',
       },
     });
-  });
+  }, []);
   return (
     <section id="cta" className="relative py-16 bg-white">
       <div

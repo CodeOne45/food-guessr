@@ -21,7 +21,7 @@ export default function Nav() {
       ease: 'back.out(1.5)',
       opacity: 0,
     });
-  });
+  }, []);
 
   return (
     <div>

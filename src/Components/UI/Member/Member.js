@@ -11,7 +11,7 @@ export default function Member({ name, imageSrc, role, href }) {
       scale: 1.5,
       paused: true,
     });
-  });
+  }, []);
 
   return (
     <li key={name}>
