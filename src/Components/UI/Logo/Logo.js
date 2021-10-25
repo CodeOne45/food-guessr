@@ -11,7 +11,7 @@ export default function Logo({ src, alt, href }) {
       scale: 2,
       paused: true,
     });
-  });
+  }, []);
 
   return (
     <a

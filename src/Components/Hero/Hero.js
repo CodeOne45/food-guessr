@@ -32,7 +32,7 @@ export default function Hero() {
       ease: 'back.out(5)',
       duration: 1,
     });
-  });
+  }, []);
 
   return (
     <section id="hero" className="relative bg-white overflow-hidden">

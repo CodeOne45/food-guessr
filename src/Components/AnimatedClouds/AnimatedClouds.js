@@ -11,7 +11,7 @@ export default function AnimatedClouds() {
     gsap.to(cloudsFirstLayer.current, { x: '-100%', delay: 1, duration: 1 });
     gsap.to(cloudsSecondLayer.current, { x: '100%', delay: 1, duration: 1 });
     gsap.to(overlay.current, { y: '-100%', delay: 2 });
-  });
+  }, []);
 
   return (
     <div className="overlay" ref={overlay}>

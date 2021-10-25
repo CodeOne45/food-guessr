@@ -20,7 +20,7 @@ export default function BurgerLogo() {
         duration: 0.7,
       }
     );
-  });
+  }, []);
 
   return (
     <img ref={burger} src={hamburger} alt="Hamburger" className="h-10 w-auto" />

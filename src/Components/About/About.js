@@ -25,7 +25,7 @@ export default function About() {
       },
       { y: 0, opacity: 1, ease: 'back.out(1.7)', delay: 0.5 }
     );
-  });
+  }, []);
   return (
     <section id="about" className="relative py-16 bg-white overflow-hidden">
       <div className="hidden lg:block lg:absolute lg:inset-y-0 lg:h-full lg:w-full">
